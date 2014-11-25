@@ -335,7 +335,10 @@ var RatioTable = Class.create({
 
   getPercent: function(width, height, limitingDistance)
   {
-    return this.ratios.get(this.determineRatio(width, height)).getPercent(width, height, limitingDistance);
+    var percent = this.ratios.get(this.determineRatio(width, height)).getPercent(width, height, limitingDistance);
+
+    if (percent) return percent;
+    else return 100;
   },
 
   getLD: function(width, height, percent)
