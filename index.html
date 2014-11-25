@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NBCC 3.2.3.1</title>
+    <script src='resources/prototype.js' type='text/javascript'></script>
+    <script src='resources/application.js' type='text/javascript'></script>
+    <script src='resources/data.js' type='text/javascript'></script>
+    <link href='resources/application.css' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div id='content'>
+      <img height='75' src='resources/logo.png' width='75'>
+      <h1>
+        NBCC 3.2.3.1
+      </h1>
+      <form>
+        <div class='section grey'>
+          <div class='heading'>Units</div>
+          <div>
+            <div class='field'>
+              <input checked='' id='imperial' name='units' type='radio' value='imperial'>
+              <label for='imperial'>Imperial</label>
+            </div>
+            <div class='field'>
+              <input id='metric' name='units' type='radio' value='metric'>
+              <label for='metric'>Metric</label>
+            </div>
+          </div>
+        </div>
+        <div class='section blue'>
+          <div class='heading'>Occupancy group</div>
+          <div>
+            <div class='field'>
+              <input checked='' id='group1' name='group' type='radio' value='1'>
+              <label for='group1'>A, B, C, D, F3</label>
+            </div>
+            <div class='field'>
+              <input id='group2' name='group' type='radio' value='2'>
+              <label for='group2'>E, F1, F2</label>
+            </div>
+          </div>
+        </div>
+        <div class='section green'>
+          <div class='heading'>Fire protection</div>
+          <div>
+            <div class='field'>
+              <input checked='' id='unsprinklered' name='sprinklers' type='radio' value='unsprinklered'>
+              <label for='unsprinklered'>Unsprinklered</label>
+            </div>
+            <div class='field'>
+              <input id='sprinklered' name='sprinklers' type='radio' value='sprinklered'>
+              <label for='sprinklered'>Sprinklered</label>
+            </div>
+          </div>
+        </div>
+        <div class='section orange'>
+          <div class='heading'>Dimensions</div>
+          <div>
+            <div class='field'>
+              <input id='height' name='height' size='5' type='text'><div class='units'></div><label for='height'>Height</label>
+            </div>
+            <div class='field'>
+              <input id='width' name='width' size='5' type='text'><div class='units'></div><label for='width'>Width</label>
+            </div>
+            <div class='field'>
+              <input id='distance' name='distance' size='5' type='text'><div class='units'></div><label for='distance'>Limiting distance</label>
+            </div>
+          </div>
+        </div>
+        <div class='section purple'>
+          <div class='heading'>Unprotected opening area</div>
+          <div>
+            <input id='area' name='area' size='4' type='text'><span>%</span><div class='units squared'></div>
+          </div>
+        </div>
+        <div class='section red'>
+          <div class='heading'>Exposed building face</div>
+          <div>
+            <div id='rating'>&nbsp;</div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

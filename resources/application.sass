@@ -1,0 +1,114 @@
+$blue: #5C80DD
+$green: #9ACD68
+$orange: #DC6F24
+$red: #E15D4E
+$purple: #9660F1
+$grey: #ACACAC
+
+$width: 300px
+$rounding: 15px
+
+@mixin background($color)
+  background-color: $color
+  border-color: $color - 30
+  -webkit-box-shadow: 3px 3px 4px #aaa
+  -moz-box-shadow: 3px 3px 4px #aaa
+  .heading
+    background-color: $color - 30
+    text-shadow: 1px 1px 0px $color
+
+
+html
+  width: 100%
+  margin: 0
+  padding: 0
+  min-height: 100%
+
+body
+  width: 100%
+  margin: 0
+  padding: 0
+  vertical-align: middle
+  height: 100%
+
+img
+  margin: 0px auto
+  display: block
+  margin-top: 20px
+  
+#content
+  margin: 0px auto
+  width: $width
+
+h1
+  text-shadow: 3px 3px 5px #bbb
+  width: $width
+  text-align: center
+  img
+    display: inline-block
+
+input
+  font-family: inherit
+  background-color: inherit
+  border: 0
+  border-bottom: 1px solid black
+  text-align: right
+  font-size: inherit
+
+input[type='radio']
+  margin: 0
+
+.units
+  display: inline
+  padding-right: 5px
+.squared
+  padding-left: 5px
+.squared:after
+  content: "2"
+  vertical-align: super
+  font-size: 50%
+
+.section
+  -moz-border-radius-topright: $rounding
+  -webkit-border-top-right-radius: $rounding
+  -moz-border-radius-topleft: $rounding
+  -webkit-border-top-left-radius: $rounding
+  -moz-border-radius-bottomleft: $rounding
+  -webkit-border-bottom-left-radius: $rounding
+  width: $width
+  margin-bottom: 10px
+  background-color: rgb(57,182,233)
+  border: 1px solid rgb(0,87,141)
+  -webkit-box-shadow: 3px 3px 4px #aaa
+  -moz-box-shadow: 3px 3px 4px #aaa
+  
+  
+  > *
+    padding: 8px
+
+  .heading
+    background-color: rgb(0,87,141)
+    display: block
+    font-weight: bold
+    -moz-border-radius-topright: $rounding
+    -webkit-border-top-right-radius: $rounding
+    -moz-border-radius-topleft: $rounding
+    -webkit-border-top-left-radius: $rounding
+    text-shadow: 1px 1px 2px rgb(57,182,233)
+  
+
+label
+  font-weight: normal
+
+.bluex
+  @include background($blue)
+.greenx
+  @include background($green)
+.orangex
+  @include background($orange)
+.redx
+  @include background($orange)
+.purplex
+  @include background($purple)
+.greyx
+  @include background($grey)

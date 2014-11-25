@@ -1,0 +1,67 @@
+!!!
+%html
+  %head
+    %title NBCC 3.2.3.1
+    %script{:src => "resources/prototype.js", :type => "text/javascript"}
+    %script{:src => "resources/application.js", :type => "text/javascript"}
+    %script{:src => "resources/data.js", :type => "text/javascript"}
+    %link{:href => "resources/application.css", :rel => "stylesheet", :type => "text/css"}/
+  %body
+    #content
+      %img{:src => "resources/logo.png", :width => 75, :height => 75}
+      %h1
+        NBCC 3.2.3.1
+      %form
+        .section.grey
+          .heading Units
+          %div
+            .field
+              %input#imperial{:checked => "", :name => "units", :type => "radio", :value => "imperial"}/
+              %label{:for => "imperial"} Imperial
+            .field
+              %input#metric{:name => "units", :type => "radio", :value => "metric"}/
+              %label{:for => "metric"} Metric
+        .section.blue
+          .heading Occupancy group
+          %div
+            .field
+              %input#group1{:checked => "", :name => "group", :type => "radio", :value => "1"}/
+              %label{:for => "group1"} A, B, C, D, F3
+            .field
+              %input#group2{:name => "group", :type => "radio", :value => "2"}/
+              %label{:for => "group2"} E, F1, F2
+        .section.green
+          .heading Fire protection
+          %div
+            .field
+              %input#unsprinklered{:checked => "", :name => "sprinklers", :type => "radio", :value => "unsprinklered"}
+              %label{:for => "unsprinklered"} Unsprinklered
+            .field
+              %input#sprinklered{:name => "sprinklers", :type => "radio", :value => "sprinklered"}
+              %label{:for => "sprinklered"} Sprinklered
+        .section.orange
+          .heading Dimensions
+          %div
+            .field
+              %input#height{:name => "height", :type => "text", :size => 5}/
+              .units>
+              %label{:for => "height"} Height
+            .field
+              %input#width{:name => "width", :type => "text", :size => 5}/
+              .units>
+              %label{:for => "width"} Width
+            .field
+              %input#distance{:name => "distance", :type => "text", :size => 5}/
+              .units>
+              %label{:for => "distance"} Limiting distance
+        .section.purple
+          .heading Unprotected opening area
+          %div
+            %input#area{:name => "area", :type => "text", :size => 4}/
+            %span><
+              \%
+            .units.squared
+        .section.red
+          .heading Exposed building face
+          %div
+            #rating &nbsp;
