@@ -1,3 +1,6 @@
+$light: rgb(57,182,233)
+$dark: rgb(0,87,141)
+
 $width: 300px
 $rounding: 15px
 
@@ -84,8 +87,8 @@ input[type='radio']
   -webkit-border-bottom-left-radius: $rounding
   width: $width
   margin-bottom: 10px
-  background-color: rgb(57,182,233)
-  border: 1px solid rgb(0,87,141)
+  background-color: $light
+  border: 1px solid $dark
   -webkit-box-shadow: 3px 3px 4px #aaa
   -moz-box-shadow: 3px 3px 4px #aaa
 
@@ -94,7 +97,7 @@ input[type='radio']
     padding: 8px
 
   .heading
-    background-color: rgb(0,87,141)
+    background-color: $dark
     display: block
     font-weight: bold
     -moz-border-radius-topright: $rounding
