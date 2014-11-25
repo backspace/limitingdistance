@@ -17,7 +17,7 @@
       %h3.title(contenteditable) Project Title
       %h3.face(contenteditable) Building Face
       %form
-        .section.grey
+        .section
           .heading Units
           %div
             .field
@@ -26,7 +26,7 @@
             .field
               %input#metric{:name => "units", :type => "radio", :value => "metric"}/
               %label{:for => "metric"} Metric
-        .section.blue
+        .section
           .heading Occupancy group
           %div
             .field
@@ -35,7 +35,7 @@
             .field
               %input#group2{:name => "group", :type => "radio", :value => "2"}/
               %label{:for => "group2"} E, F1, F2
-        .section.green
+        .section
           .heading Fire protection
           %div
             .field
@@ -44,7 +44,7 @@
             .field
               %input#sprinklered{:name => "sprinklers", :type => "radio", :value => "sprinklered"}
               %label{:for => "sprinklered"} Sprinklered
-        .section.orange
+        .section
           .heading Dimensions
           %div
             .field
@@ -59,14 +59,14 @@
               %input#distance{:name => "distance", :type => "text", :size => 5}/
               .units>
               %label{:for => "distance"} Limiting distance
-        .section.purple
+        .section
           .heading Unprotected opening area
           %div
             %input#area{:name => "area", :type => "text", :size => 4}/
             %span><
               \%
             .units.squared
-        .section.red
+        .section
           .heading Exposed building face
           %div
             #rating &nbsp;
