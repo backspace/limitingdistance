@@ -34,12 +34,17 @@ img {
   margin: 0px auto;
   width: 300px; }
 
-h1 {
-  text-shadow: 3px 3px 5px #bbb;
+h1, h2 {
   width: 300px;
   text-align: center; }
-  h1 img {
+  h1 img, h2 img {
     display: inline-block; }
+
+h1 {
+  text-shadow: 3px 3px 5px #bbb; }
+
+h2 {
+  margin-top: 0; }
 
 input {
   font-family: inherit;
