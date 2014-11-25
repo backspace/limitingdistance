@@ -34,16 +34,21 @@ img {
   margin: 0px auto;
   width: 300px; }
 
-h1, h2 {
+h1, h2, h3 {
   width: 300px;
   text-align: center; }
-  h1 img, h2 img {
+  h1 img, h2 img, h3 img {
     display: inline-block; }
 
 h1 {
   text-shadow: 3px 3px 5px #bbb; }
 
 h2 {
+  margin-top: 0; }
+
+h3.title {
+  margin-bottom: 0; }
+h3.face {
   margin-top: 0; }
 
 input {
