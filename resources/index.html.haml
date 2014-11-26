@@ -26,11 +26,11 @@
           .heading Units
           %div
             .field
-              %input#imperial{:checked => "", :name => "units", :type => "radio", :value => "imperial"}/
-              %label{:for => "imperial"} Imperial
-            .field
-              %input#metric{:name => "units", :type => "radio", :value => "metric"}/
+              %input#metric{:checked => "", :name => "units", :type => "radio", :value => "metric"}/
               %label{:for => "metric"} Metric
+            .field
+              %input#imperial{:name => "units", :type => "radio", :value => "imperial"}/
+              %label{:for => "imperial"} Imperial
         .section
           .heading Occupancy group
           %div
