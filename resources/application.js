@@ -49,10 +49,29 @@ function ready()
 
 function change()
 {
+  setCalculatedArea();
+
   if (ready())
   {
     $("area").value = tables.get(sprinklers()).get(group()).getPercent(width(), height(), distance()).toFixed(1);
     setRating();
+  }
+}
+
+function setCalculatedArea() {
+  if (width() && height()) {
+    // Calculate the area before unit conversion
+    var w = parseFloat($F('width'));
+    var h = parseFloat($F('height'));
+
+    var area = w*h;
+    if (area) area = area.round(4);
+    $$("#calculated-area input")[0].value = area;
+
+    $("calculated-area").show();
+  }
+  else {
+    $("calculated-area").hide();
   }
 }
 

@@ -53,6 +53,9 @@
           .heading Dimensions
           %div
             .field
+              #calculated-area(style='display: none')
+                %input(type="text" size=6)
+                %label.units.squared
               %input#height{:name => "height", :type => "text", :size => 5}/
               .units>
               %label{:for => "height"} Height

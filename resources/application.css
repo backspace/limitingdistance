@@ -74,6 +74,13 @@ input[type='radio'] {
   vertical-align: super;
   font-size: 50%; }
 
+#calculated-area {
+  float: right;
+  margin-right: 3rem;
+  margin-top: 0.5rem; }
+  #calculated-area input {
+    border-bottom: 0; }
+
 .section {
   -moz-border-radius-topright: 15px;
   -webkit-border-top-right-radius: 15px;
