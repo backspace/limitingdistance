@@ -58,7 +58,7 @@ function loaded()
 
   $("#imperial, #metric").change(unitChange);
 
-  $("#area").change(areaChange);
+  $("#area").change(areaChange).keyup(areaChange);
 
   // Select entire contenteditable upon click
   $("*[contenteditable]").click(function() {
