@@ -278,33 +278,6 @@ var Table = Class.create({
       var index = percents.indexOf(area);
       return this.lds[index];
     }
-  },
-
-  interpolatePercentx: function(area, limitingDistance)
-  {
-    // area is known to be a key
-    var percents = this.areaToPercents.get(area);
-
-    if (this.lds.include(limitingDistance))
-    {
-      var index = this.lds.indexOf(limitingDistance);
-      return percents[index < percents.length ? index : percents.length - 1];
-    }
-    else
-    {
-      var lowerLD = this.lds.reverse(false).find(function(key) { return key < limitingDistance; });
-      var higherLD = this.lds.find(function(key) { return key > limitingDistance; });
-
-      var lowerIndex = this.lds.indexOf(lowerLD);
-      var higherIndex = this.lds.indexOf(higherLD);
-
-
-      var lowerPercent = percents[lowerIndex < percents.length ? lowerIndex : percents.length - 1];
-      var higherPercent = percents[higherIndex < percents.length ? higherIndex : percents.length - 1];
-
-
-      return lowerPercent + (higherPercent - lowerPercent)*(limitingDistance - lowerLD)/(higherLD - lowerLD);
-    }
   }
 });
 
