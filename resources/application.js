@@ -6,25 +6,63 @@ Number.prototype.round = function(points)
   return n/p;
 }
 
+Array.prototype.uniq = function() {
+    var arr = [];
+    for(var i = 0; i < this.length; i++) {
+        if(!arr.indexOf(this[i]) != -1) {
+            arr.push(this[i]);
+        }
+    }
+    return arr; 
+}
+
+Array.prototype.first = function(){
+    return this[0];
+};
+
+Array.prototype.last = function(){
+    return this[this.length - 1];
+};
+
+String.prototype.blank = function() {
+    return (this.length === 0 || !this.trim());
+};
+
+Array.prototype.max = function() {
+  return Math.max.apply(null, this);
+};
+
+Array.prototype.min = function() {
+  return Math.min.apply(null, this);
+};
+
+Array.prototype.clone = function() {
+	return this.slice(0);
+};
+
+Array.prototype.include = function(obj) {
+  var i = this.length;
+  while (i--) {
+      if (this[i] === obj) {
+          return true;
+      }
+  }
+  return false;
+}
+
 function loaded()
 {
-  $("height").focus();
+  $("#height").focus();
 
-  $w("height width distance group1 group2 sprinklered unsprinklered").each(function(field) {
-    $(field).observe("change", change);
-    $(field).observe("keyup", change);
-  });
+  $("#height, #width, #distance, #group1, #group2, #sprinklered, #unsprinklered").change(change).keyup(change);
 
-  $("imperial").observe("change", unitChange);
-  $("metric").observe("change", unitChange);
+  $("#imperial, #metric").change(unitChange);
 
-  $("area").observe("change", areaChange);
+  $("#area").change(areaChange);
 
   // Select entire contenteditable upon click
-  $$("*[contenteditable]").each(function(field) {
-    $(field).observe("click", function() {
-      document.execCommand('selectAll', false, null);
-    });
+  $("*[contenteditable]").click(function() {
+    document.execCommand('selectAll', false, null);
   });
 
   unitChange();
@@ -32,26 +70,25 @@ function loaded()
 
 function unitFactor()
 {
-  return $("imperial").checked ? 1/FTM : FTM;
+  return $("#imperial").prop('checked') ? 1/FTM : FTM;
 }
 
 function unitChange()
 {
   var factor = unitFactor();
-  $w("width height distance").each(function(field) {
-    if ($F(field)) $(field).value =($(field).value*factor).round(4);
+  ("width height distance").split(" ").forEach(function(field) {
+    var selector = "#" + field;
+    if ($(selector).val()) $(selector).val(($(selector).val()*factor).round(4));
   });
 
   var unit = imperial() ? "ft" : "m";
 
-  $$(".units").each(function(e) {
-    e.innerHTML = unit;
-  });
+  $(".units").html(unit);
 }
 
 function ready()
 {
-  return !($F("height").blank() || $F("width").blank() || ($F("distance").blank() && $F("area").blank()))
+  return !($("#height").val().blank() || $("#width").val().blank() || ($("#distance").val().blank() && $("#area").val().blank()))
 }
 
 function change()
@@ -60,7 +97,8 @@ function change()
 
   if (ready())
   {
-    $("area").value = tables.get(sprinklers()).get(group()).getPercent(width(), height(), distance()).toFixed(1);
+    table = tables[sprinklers()][group()];
+    $("#area").val(table.getPercent(width(), height(), distance()).toFixed(1));
     setRating();
   }
 }
@@ -68,24 +106,24 @@ function change()
 function setCalculatedArea() {
   if (width() && height()) {
     // Calculate the area before unit conversion
-    var w = parseFloat($F('width'));
-    var h = parseFloat($F('height'));
+    var w = parseFloat($("#width").val());
+    var h = parseFloat($("#height").val());
 
     var area = w*h;
     if (area) area = area.round(4);
-    $$("#calculated-area input")[0].value = area;
+    $("#calculated-area input").val(area);
   }
   else {
-    $$("#calculated-area input")[0].value = '';
+    $("#calculated-area input").val("");
   }
 }
 
 function setRating()
 {
-  var area = $("area").value;
+  var area = $("#area").val();
   var rating;
   var g1 = group() == 1;
-   notes = $A();
+   notes = [];
 
   if (area <= 10)
   {
@@ -107,72 +145,70 @@ function setRating()
   }
 
   if (area < 100) notes.push(rating + " fire-resistance rating");
-  $("rating").innerHTML = (notes.join("<br/>"));
+  $("#rating").html(notes.join("<br/>"));
 }
 
 function areaChange()
 {
   if (ready())
   {
-    $("distance").value = (tables.get(sprinklers()).get(group()).getLD(width(), height(), $("area").value)*(imperial() ? 1/FTM : 1)).round(4);
+    $("#distance").val((tables[sprinklers()][group()].getLD(width(), height(), $("#area").val())*(imperial() ? 1/FTM : 1)).round(4));
     setRating();
   }
 }
 
 function imperial()
 {
-  return $("imperial").checked;
+  return $("#imperial").prop("checked");
 }
 
 var FTM = 0.3048;
 
 function height()
 {
-  return $F("height")*(imperial() ? FTM : 1);
+  return $("#height").val()*(imperial() ? FTM : 1);
 }
 
 function width()
 {
-  return $F("width")*(imperial() ? FTM : 1);
+  return $("#width").val()*(imperial() ? FTM : 1);
 }
 
 function sprinklers()
 {
-  return $("sprinklered").checked;
+  return $("#sprinklered").prop("checked");
 }
 
 function distance()
 {
-  return $F("distance")*(imperial() ? FTM : 1);
+  return $("#distance").val()*(imperial() ? FTM : 1);
 }
 
 function group()
 {
-  return $("group1").checked ? $("group1").value : $("group2").value;
+  return $("#group1").prop("checked") ? $("#group1").val() : $("#group2").val();
 }
 
-Event.observe(window, "load", loaded);
+$(loaded);
 
-var Table = Class.create({
-  initialize: function(lds)
-  {
-    this.areaToPercents = $H();
-    this.lds = lds;
-  },
+var Table = function(lds) {
+  this.areaToPercents = {};
+  this.lds = lds;
+};
 
-  area: function(area, percents)
+Table.prototype.area = function(area, percents)
   {
-    if (!percents.collect(function(value, index) { return index == 0 ? true : value >= percents[index - 1]}).uniq().last())
+    if (!percents.map(function(value, index) { return index == 0 ? true : value >= percents[index - 1]}).uniq().last())
     {
       console.log("Non-increasing data! Area: " + area + ", Percents:");
       console.log(percents);
     }
-    this.areaToPercents.set(area, percents);
-  },
+    this.areaToPercents[area] = percents;
+  };
 
-  getAreas: function(area)
+Table.prototype.getAreas = function(area)
   {
-    var areaKeys = this.areaToPercents.keys().collect(function(i) { return parseInt(i); }).sortBy(function(i) { return parseInt(i); });
+    var areaKeys = Object.keys(this.areaToPercents).map(function(i) { return parseInt(i); }).sort(function(a,b) { return parseInt(a)-parseInt(b); });
     var minKey = areaKeys.min();
     var maxKey = areaKeys.max();
 
@@ -190,13 +226,13 @@ var Table = Class.create({
     }
     else
     {
-      var lowerKey = areaKeys.reverse(false).find(function(key) { return key < area; });
-      var higherKey = areaKeys.find(function(key) { return key > area; });
+      var lowerKey = areaKeys.clone().reverse().filter(function(key) { return key < area; })[0];
+      var higherKey = areaKeys.filter(function(key) { return key > area; })[0];
       return [lowerKey, higherKey];
     }
-  },
+  };
 
-  getLD: function(width, height, percent)
+Table.prototype.getLD = function(width, height, percent)
   {
     var area = width*height;
 
@@ -217,13 +253,13 @@ var Table = Class.create({
     {
       return this.interpolateLD(areas, percent);
     }
-  },
+  };
 
-  getPercent: function(width, height, limitingDistance)
+Table.prototype.getPercent = function(width, height, limitingDistance)
   {
     var area = width*height;
 
-    var areaKeys = this.areaToPercents.keys().collect(function(i) { return parseInt(i); }).sortBy(function(i) { return parseInt(i); });
+    var areaKeys = Object.keys(this.areaToPercents).map(function(i) { return parseInt(i); }).sort(function(a,b) { return parseInt(a)-parseInt(b); });
     var minKey = areaKeys.min();
     var maxKey = areaKeys.max();
 
@@ -242,8 +278,8 @@ var Table = Class.create({
     else
     {
       // must interpolate the interpolation
-      var lowerKey = areaKeys.reverse(false).find(function(key) { return key < area; });
-      var higherKey = areaKeys.find(function(key) { return key > area; });
+      var lowerKey = areaKeys.clone().reverse().filter(function(key) { return key < area; })[0];
+      var higherKey = areaKeys.filter(function(key) { return key > area; })[0];
 
       var lowerPercent = this.interpolatePercent(lowerKey, limitingDistance);
       var higherPercent = this.interpolatePercent(higherKey, limitingDistance);
@@ -251,21 +287,21 @@ var Table = Class.create({
       return lowerPercent + (higherPercent - lowerPercent)*(area - lowerKey)/(higherKey - lowerKey);
     }
 
-  },
+  };
 
-  interpolateLD: function(area, percent)
+Table.prototype.interpolateLD = function(area, percent)
   {
     // area is a key
-    return this.interpolate(percent, this.areaToPercents.get(area), this.lds);
-  },
+    return this.interpolate(percent, this.areaToPercents[area], this.lds);
+  };
 
-  interpolatePercent: function(area, limitingDistance)
+Table.prototype.interpolatePercent = function(area, limitingDistance)
   {
     // area is a key
-    return this.interpolate(limitingDistance, this.lds, this.areaToPercents.get(area));
-  },
+    return this.interpolate(limitingDistance, this.lds, this.areaToPercents[area]);
+  };
 
-  interpolate: function(key, keys, values)
+Table.prototype.interpolate = function(key, keys, values)
   {
     // Could be LD=2.25, lds=0,1.2.., percents=0,16,24...
     // Could be percent=20, percents=0,16,24.., lds=0,1.2,1.5...
@@ -280,8 +316,8 @@ var Table = Class.create({
     }
     else
     {
-      var lowerKey = keys.reverse(false).find(function(ok) { return ok < key; });
-      var upperKey = keys.find(function(ok) { return ok > key; });
+      var lowerKey = keys.clone().reverse().filter(function(ok) { return ok < key; })[0];
+      var upperKey = keys.filter(function(ok) { return ok > key; })[0];
 
       var lowerKeyIndex = keys.indexOf(lowerKey);
       var upperKeyIndex = keys.indexOf(upperKey);
@@ -297,31 +333,28 @@ var Table = Class.create({
     //area is known to be a key
     // this was added after interpolatePercent, would be better merged with it somehow as it's similar, but oh well
 
-    var percents = this.areaToPercents.get(area);
+    var percents = this.areaToPercents[area];
 
     if (percents.include(area))
     {
       var index = percents.indexOf(area);
       return this.lds[index];
     }
-  }
-});
+  };
 
-var RatioTable = Class.create({
-  initialize: function(lds)
-  {
+var RatioTable = function(lds) {
     this.lds = lds;
     this.lows = new Table(lds);
     this.mids = new Table(lds);
     this.highs = new Table(lds);
 
-    this.ratios = $H();
-    this.ratios.set(RatioTable.LOW, this.lows);
-    this.ratios.set(RatioTable.MID, this.mids);
-    this.ratios.set(RatioTable.HIGH, this.highs);
-  },
+    this.ratios = {};
+    this.ratios[RatioTable.LOW] = this.lows;
+    this.ratios[RatioTable.MID] = this.mids;
+    this.ratios[RatioTable.HIGH] = this.highs;
+  };
 
-  determineRatio: function(width, height)
+RatioTable.prototype.determineRatio = function(width, height)
   {
     var short = Math.min(width, height);
     var long = Math.max(width, height);
@@ -331,29 +364,28 @@ var RatioTable = Class.create({
     if (ratio < 3) return RatioTable.LOW;
     else if (ratio >= 3 && ratio <= 10) return RatioTable.MID;
     else return RatioTable.HIGH;
-  },
+  };
 
-  getPercent: function(width, height, limitingDistance)
+RatioTable.prototype.getPercent = function(width, height, limitingDistance)
   {
-    var percent = this.ratios.get(this.determineRatio(width, height)).getPercent(width, height, limitingDistance);
+    var percent = this.ratios[(this.determineRatio(width, height))].getPercent(width, height, limitingDistance);
 
     if (percent) return percent;
     else return 100;
-  },
+  };
 
-  getLD: function(width, height, percent)
+RatioTable.prototype.getLD = function(width, height, percent)
   {
-    return this.ratios.get(this.determineRatio(width, height)).getLD(width, height, percent);
-  },
+    return this.ratios[(this.determineRatio(width, height))].getLD(width, height, percent);
+  };
 
-  area: function(area, lows, mids, highs) 
+RatioTable.prototype.area = function(area, lows, mids, highs) 
   {
     this.lows.area(area, lows);
     this.mids.area(area, mids);
     this.highs.area(area, highs);
-  }
-});
+  };
 
-RatioTable.LOW = 0; 
-RatioTable.MID = 1; 
-RatioTable.HIGH = 2;
+RatioTable.LOW = '0'; 
+RatioTable.MID = '1'; 
+RatioTable.HIGH = '2';

@@ -1,25 +1,25 @@
-var tables = $H();
+var tables = {};
 
-var unsprinkleredTables = $H();
-tables.set(false, unsprinkleredTables);
+var unsprinkleredTables = {};
+tables[false] = unsprinkleredTables;
 
-var sprinkleredTables = $H();
-tables.set(true, sprinkleredTables);
+var sprinkleredTables = {};
+tables[true] = sprinkleredTables;
 
 var unsprinkleredGroup1 = new RatioTable([0, 1.2, 1.5, 2.0, 2.5, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 25, 30, 35, 40, 45, 50]);
-unsprinkleredTables.set(1, unsprinkleredGroup1);
+unsprinkleredTables[1] = unsprinkleredGroup1;
 var un1 = unsprinkleredGroup1;
 
 var unsprinkleredGroup2 = new RatioTable(un1.lds);
-unsprinkleredTables.set(2, unsprinkleredGroup2);
+unsprinkleredTables[2] = unsprinkleredGroup2;
 var un2 = unsprinkleredGroup2;
 
 var sprinkleredGroup1 = new Table([0, 1.2, 1.5, 2.0, 2.5, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
-sprinkleredTables.set(1, sprinkleredGroup1);
+sprinkleredTables[1] = sprinkleredGroup1;
 var s1 = sprinkleredGroup1;
 
 var sprinkleredGroup2 = new Table(s1.lds);
-sprinkleredTables.set(2, sprinkleredGroup2);
+sprinkleredTables[2] = sprinkleredGroup2;
 var s2 = sprinkleredGroup2;
 
 
