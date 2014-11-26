@@ -82,7 +82,7 @@ function setRating()
     rating = g1 ? "45min" : "1h";
   }
 
-  notes.push(rating + " fire-resistance rating");
+  if (area < 100) notes.push(rating + " fire-resistance rating");
   $("rating").innerHTML = (notes.join("<br/>"));
 }
 
