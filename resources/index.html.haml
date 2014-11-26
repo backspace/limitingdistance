@@ -1,3 +1,4 @@
+-field_width = 6
 !!!
 %html
   %head
@@ -54,25 +55,25 @@
           .heading Dimensions
           %div
             .field
-              %input#height{:name => "height", :type => "text", :size => 5}/
+              %input#height{:name => "height", :type => "text", :size => field_width}/
               .units>
               %label{:for => "height"} Height
             .field
-              %input#width{:name => "width", :type => "text", :size => 5}/
+              %input#width{:name => "width", :type => "text", :size => field_width}/
               .units>
               %label{:for => "width"} Width
             .field#calculated-area
-              %input(type="text" size=5 tabindex="-1")/
+              %input(type="text" size=field_width tabindex="-1")/
               .units.squared>
               %label Building face area
             .field
-              %input#distance{:name => "distance", :type => "text", :size => 5}/
+              %input#distance{:name => "distance", :type => "text", :size => field_width}/
               .units>
               %label{:for => "distance"} Limiting distance
         .section
           .heading Unprotected opening area
           %div
-            %input#area{:name => "area", :type => "text", :size => 4}/
+            %input#area{:name => "area", :type => "text", :size => field_width}/
             %span><
               \%
             .units.squared
