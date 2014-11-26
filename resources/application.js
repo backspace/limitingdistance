@@ -20,6 +20,13 @@ function loaded()
 
   $("area").observe("change", areaChange);
 
+  // Select entire contenteditable upon click
+  $$("*[contenteditable]").each(function(field) {
+    $(field).observe("click", function() {
+      document.execCommand('selectAll', false, null);
+    });
+  });
+
   unitChange();
 }
 
