@@ -64,7 +64,9 @@ input[type='radio'] {
 
 .units {
   display: inline;
-  padding-right: 5px; }
+  padding-right: 10px; }
+  .units.squared {
+    padding-right: 5px; }
 
 .squared {
   padding-left: 5px; }
