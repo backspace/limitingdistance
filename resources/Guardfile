@@ -1,3 +1,5 @@
+guard :coffeescript, input: "coffeescripts", output: "javascripts"
+
 guard :haml, output: "../" do
   watch(/^.+(\.html\.haml)$/)
 end

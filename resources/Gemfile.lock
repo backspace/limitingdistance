@@ -4,6 +4,11 @@ GEM
     celluloid (0.16.0)
       timers (~> 4.0.0)
     coderay (1.1.0)
+    coffee-script (2.3.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.8.0)
+    execjs (2.2.2)
     ffi (1.9.6)
     formatador (0.2.5)
     guard (2.8.2)
@@ -12,6 +17,9 @@ GEM
       lumberjack (~> 1.0)
       pry (>= 0.9.12)
       thor (>= 0.18.1)
+    guard-coffeescript (1.4.0)
+      coffee-script (>= 2.2.0)
+      guard (>= 1.1.0)
     guard-haml (1.1.2)
       guard (~> 2.0)
       haml (>= 3.0)
@@ -46,5 +54,6 @@ PLATFORMS
 
 DEPENDENCIES
   guard
+  guard-coffeescript
   guard-haml
   guard-sass
