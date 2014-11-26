@@ -53,9 +53,6 @@
           .heading Dimensions
           %div
             .field
-              #calculated-area(style='display: none')
-                %input(type="text" size=6)
-                %label.units.squared
               %input#height{:name => "height", :type => "text", :size => 5}/
               .units>
               %label{:for => "height"} Height
@@ -63,6 +60,10 @@
               %input#width{:name => "width", :type => "text", :size => 5}/
               .units>
               %label{:for => "width"} Width
+            .field#calculated-area
+              %input(type="text" size=5 tabindex="-1")/
+              .units.squared>
+              %label Building face area
             .field
               %input#distance{:name => "distance", :type => "text", :size => 5}/
               .units>

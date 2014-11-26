@@ -75,11 +75,11 @@ input[type='radio'] {
   font-size: 50%; }
 
 #calculated-area {
-  float: right;
-  margin-right: 3rem;
-  margin-top: 0.5rem; }
+  margin-bottom: 1em; }
   #calculated-area input {
     border-bottom: 0; }
+  #calculated-area .squared {
+    padding-left: 0; }
 
 .section {
   -moz-border-radius-topright: 15px;
