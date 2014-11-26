@@ -12,7 +12,7 @@ function loaded()
 
   $w("height width distance group1 group2 sprinklered unsprinklered").each(function(field) {
     $(field).observe("change", change);
-    $(field).observe("keypress", change);
+    $(field).observe("keyup", change);
   });
 
   $("imperial").observe("change", unitChange);
