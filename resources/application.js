@@ -265,6 +265,8 @@ var Table = Class.create({
       var lowerValue = lowerKeyIndex < values.length ? values[lowerKeyIndex] : values.last();
       var upperValue = upperKeyIndex < values.length ? values[upperKeyIndex] : values.last();
 
+      // If there is no higher key, return the lower value
+      if (typeof upperKey === 'undefined') return lowerValue;
       return lowerValue + (upperValue - lowerValue)*(key - lowerKey)/(upperKey - lowerKey);
     }
 
