@@ -73,23 +73,26 @@ class FormWatcher
 
   areaChange: =>
     if @ready()
-      @$("#distance").val((@tables[@sprinklers()][@group()].getLD(@width(), @height, @$("#area").val())*(if @imperial() then 1/FTM else 1)).round(4))
+      @$("#distance").val((@tables[@sprinklers()][@group()].getLD(@width(), @height, @$("#area").val())*(@imperialMultiplier())).round(4))
       @setRating()
 
   imperial: =>
     @$("#imperial").prop "checked"
 
+  imperialMultiplier: ->
+    if @imperial() then 1/FTM else 1
+
   height: ->
-    @$("#height").val()*(if @imperial() then 1/FTM else 1)
+    @$("#height").val()*@imperialMultiplier()
 
   width: ->
-    @$("#width").val()*(if @imperial() then 1/FTM else 1)
+    @$("#width").val()*@imperialMultiplier()
 
   sprinklers: ->
     @$("#sprinklered").prop "checked"
 
   distance: ->
-    @$("#distance").val()*(if @imperial() then 1/FTM else 1)
+    @$("#distance").val()*@imperialMultiplier()
 
   group: ->
     if @$("#group1").prop "checked" then @$("#group1").val() else @$("#group2").val()

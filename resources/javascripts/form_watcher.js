@@ -100,7 +100,7 @@
 
     FormWatcher.prototype.areaChange = function() {
       if (this.ready()) {
-        this.$("#distance").val((this.tables[this.sprinklers()][this.group()].getLD(this.width(), this.height, this.$("#area").val()) * (this.imperial() ? 1 / FTM : 1)).round(4));
+        this.$("#distance").val((this.tables[this.sprinklers()][this.group()].getLD(this.width(), this.height, this.$("#area").val()) * (this.imperialMultiplier())).round(4));
         return this.setRating();
       }
     };
@@ -109,12 +109,20 @@
       return this.$("#imperial").prop("checked");
     };
 
+    FormWatcher.prototype.imperialMultiplier = function() {
+      if (this.imperial()) {
+        return 1 / FTM;
+      } else {
+        return 1;
+      }
+    };
+
     FormWatcher.prototype.height = function() {
-      return this.$("#height").val() * (this.imperial() ? 1 / FTM : 1);
+      return this.$("#height").val() * this.imperialMultiplier();
     };
 
     FormWatcher.prototype.width = function() {
-      return this.$("#width").val() * (this.imperial() ? 1 / FTM : 1);
+      return this.$("#width").val() * this.imperialMultiplier();
     };
 
     FormWatcher.prototype.sprinklers = function() {
@@ -122,7 +130,7 @@
     };
 
     FormWatcher.prototype.distance = function() {
-      return this.$("#distance").val() * (this.imperial() ? 1 / FTM : 1);
+      return this.$("#distance").val() * this.imperialMultiplier();
     };
 
     FormWatcher.prototype.group = function() {
