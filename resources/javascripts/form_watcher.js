@@ -15,15 +15,15 @@
       this.$ = __bind(this.$, this);
       this.unitChange = __bind(this.unitChange, this);
       this.$el = $(this.element);
-      this.$("#height, #width, #distance, #group1, #group2, #sprinklered, #unsprinklered").keyup(this.change, this.nonTabChange);
-      this.$("#imperial, #metric").change(this.unitChange);
-      this.$("#area").keyup(this.areaChange, this.nonTabChange);
+      this.$(".height, .width, .distance, .group1, .group2, .sprinklered, .unsprinklered").keyup(this.change, this.nonTabChange);
+      this.$(".imperial, .metric").change(this.unitChange);
+      this.$(".area").keyup(this.areaChange, this.nonTabChange);
       this.unitChange();
     }
 
     FormWatcher.prototype.unitFactor = function() {
       var _ref;
-      return (_ref = this.$("#imperial").prop('checked')) != null ? _ref : 1 / {
+      return (_ref = this.$(".imperial").prop('checked')) != null ? _ref : 1 / {
         FTM: FTM
       };
     };
@@ -31,7 +31,7 @@
     FormWatcher.prototype.unitChange = function() {
       var factor, unit;
       factor = this.unitFactor();
-      this.$("#width, #height, #distance").each(function(index, field) {
+      this.$(".width, .height, .distance").each(function(index, field) {
         field = $(field);
         if (field.val()) {
           return field.val((field.val() * factor).round(4));
@@ -42,7 +42,7 @@
     };
 
     FormWatcher.prototype.ready = function() {
-      return !(this.$("#height").val().blank() || this.$("#width").val().blank() || (this.$("#distance").val().blank() && $("#area").val().blank()));
+      return !(this.$(".height").val().blank() || this.$(".width").val().blank() || (this.$(".distance").val().blank() && $(".area").val().blank()));
     };
 
     FormWatcher.prototype.$ = function(selector) {
@@ -55,7 +55,7 @@
       if (this.ready()) {
         table = this.tables[this.sprinklers()][this.group()];
         percent = table.getPercent(this.width(), this.height(), this.distance()).toFixed(1);
-        this.$("#area").val(percent);
+        this.$(".area").val(percent);
         return this.setRating();
       }
     };
@@ -70,15 +70,15 @@
     FormWatcher.prototype.setCalculatedArea = function() {
       var area, h, w;
       if (this.width() && this.height()) {
-        w = parseFloat(this.$("#width").val());
-        h = parseFloat(this.$("#height").val());
+        w = parseFloat(this.$(".width").val());
+        h = parseFloat(this.$(".height").val());
         area = w * h;
         if (area) {
           area = area.round(4);
         }
-        return this.$("#calculated-area input").val(area);
+        return this.$(".calculated-area input").val(area);
       } else {
-        return this.$("#calculated-area input").val("");
+        return this.$(".calculated-area input").val("");
       }
     };
 
@@ -103,22 +103,22 @@
       if (area < 100) {
         notes.push("" + rating + " fire-resistance rating");
       }
-      return this.$("#rating").html(notes.join("<br>"));
+      return this.$(".rating").html(notes.join("<br>"));
     };
 
     FormWatcher.prototype.areaChange = function() {
       var distance, table;
       if (this.ready()) {
-        $("#distance").val("");
+        $(".distance").val("");
         table = this.tables[this.sprinklers()][this.group()];
         distance = table.getLD(this.width(), this.height(), this.area());
-        this.$("#distance").val(distance.round(4));
+        this.$(".distance").val(distance.round(4));
         return this.setRating();
       }
     };
 
     FormWatcher.prototype.imperial = function() {
-      return this.$("#imperial").prop("checked");
+      return this.$(".imperial").prop("checked");
     };
 
     FormWatcher.prototype.imperialMultiplier = function() {
@@ -130,30 +130,30 @@
     };
 
     FormWatcher.prototype.height = function() {
-      return this.$("#height").val() * this.imperialMultiplier();
+      return this.$(".height").val() * this.imperialMultiplier();
     };
 
     FormWatcher.prototype.width = function() {
-      return this.$("#width").val() * this.imperialMultiplier();
+      return this.$(".width").val() * this.imperialMultiplier();
     };
 
     FormWatcher.prototype.sprinklers = function() {
-      return this.$("#sprinklered").prop("checked");
+      return this.$(".sprinklered").prop("checked");
     };
 
     FormWatcher.prototype.distance = function() {
-      return this.$("#distance").val() * this.imperialMultiplier();
+      return this.$(".distance").val() * this.imperialMultiplier();
     };
 
     FormWatcher.prototype.area = function() {
-      return this.$("#area").val();
+      return this.$(".area").val();
     };
 
     FormWatcher.prototype.group = function() {
-      if (this.$("#group1").prop("checked")) {
-        return this.$("#group1").val();
+      if (this.$(".group1").prop("checked")) {
+        return this.$(".group1").val();
       } else {
-        return this.$("#group2").val();
+        return this.$(".group2").val();
       }
     };
 

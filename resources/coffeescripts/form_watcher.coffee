@@ -2,21 +2,21 @@ class FormWatcher
   constructor: (@element, @tables) ->
     @$el = $(@element)
 
-    @$("#height, #width, #distance, #group1, #group2, #sprinklered, #unsprinklered").keyup(@change, @nonTabChange)
+    @$(".height, .width, .distance, .group1, .group2, .sprinklered, .unsprinklered").keyup(@change, @nonTabChange)
 
-    @$("#imperial, #metric").change(@unitChange)
+    @$(".imperial, .metric").change(@unitChange)
 
-    @$("#area").keyup(@areaChange, @nonTabChange)
+    @$(".area").keyup(@areaChange, @nonTabChange)
 
     @unitChange()
 
   unitFactor: ->
-    @$("#imperial").prop('checked') ? 1/FTM : FTM
+    @$(".imperial").prop('checked') ? 1/FTM : FTM
 
   unitChange: =>
     factor = @unitFactor()
 
-    @$("#width, #height, #distance").each (index, field) ->
+    @$(".width, .height, .distance").each (index, field) ->
       field = $(field)
       field.val((field.val()*factor).round(4)) if field.val()
 
@@ -24,7 +24,7 @@ class FormWatcher
     @$(".units").html unit
 
   ready: ->
-    !(@$("#height").val().blank() || @$("#width").val().blank() || (@$("#distance").val().blank() && $("#area").val().blank()))
+    !(@$(".height").val().blank() || @$(".width").val().blank() || (@$(".distance").val().blank() && $(".area").val().blank()))
 
   $: (selector) =>
     @$el.find(selector)
@@ -35,7 +35,7 @@ class FormWatcher
     if @ready()
       table = @tables[@sprinklers()][@group()]
       percent = table.getPercent(@width(), @height(), @distance()).toFixed(1)
-      @$("#area").val percent
+      @$(".area").val percent
       @setRating()
 
   nonTabChange: (event) =>
@@ -43,14 +43,14 @@ class FormWatcher
 
   setCalculatedArea: =>
     if @width() && @height()
-      w = parseFloat(@$("#width").val())
-      h = parseFloat(@$("#height").val())
+      w = parseFloat(@$(".width").val())
+      h = parseFloat(@$(".height").val())
 
       area = w*h
       area = area.round(4) if area
-      @$("#calculated-area input").val area
+      @$(".calculated-area input").val area
     else
-      @$("#calculated-area input").val ""
+      @$(".calculated-area input").val ""
 
   setRating: =>
     area = @area()
@@ -72,38 +72,38 @@ class FormWatcher
       notes.push "Combustible cladding"
 
     notes.push "#{rating} fire-resistance rating" if area < 100
-    @$("#rating").html notes.join("<br>")
+    @$(".rating").html notes.join("<br>")
 
   areaChange: =>
     if @ready()
-      $("#distance").val ""
+      $(".distance").val ""
       table = @tables[@sprinklers()][@group()]
       distance = table.getLD(@width(), @height(), @area())
-      @$("#distance").val(distance.round(4))
+      @$(".distance").val(distance.round(4))
       @setRating()
 
   imperial: =>
-    @$("#imperial").prop "checked"
+    @$(".imperial").prop "checked"
 
   imperialMultiplier: ->
     if @imperial() then 1/FTM else 1
 
   height: ->
-    @$("#height").val()*@imperialMultiplier()
+    @$(".height").val()*@imperialMultiplier()
 
   width: ->
-    @$("#width").val()*@imperialMultiplier()
+    @$(".width").val()*@imperialMultiplier()
 
   sprinklers: ->
-    @$("#sprinklered").prop "checked"
+    @$(".sprinklered").prop "checked"
 
   distance: ->
-    @$("#distance").val()*@imperialMultiplier()
+    @$(".distance").val()*@imperialMultiplier()
 
   area: ->
-    @$("#area").val()
+    @$(".area").val()
 
   group: ->
-    if @$("#group1").prop "checked" then @$("#group1").val() else @$("#group2").val()
+    if @$(".group1").prop "checked" then @$(".group1").val() else @$(".group2").val()
 
 window.FormWatcher = FormWatcher
