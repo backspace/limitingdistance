@@ -49,6 +49,16 @@ img.logo {
     content: " ";
     clear: both; }
 
+.face-label {
+  position: relative; }
+  .face-label .controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0.2; }
+  .face-label:hover .controls {
+    opacity: 1; }
+
 h1, h2, h3 {
   width: 300px;
   text-align: center; }

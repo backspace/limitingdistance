@@ -1,5 +1,5 @@
 class FormWatcher
-  constructor: (@element, @tables) ->
+  constructor: (@element, @tables, @faceWatcher) ->
     @$el = $(@element)
 
     @$(".height, .width, .distance, .group1, .group2, .sprinklered, .unsprinklered").keyup(@change, @nonTabChange)
@@ -8,7 +8,13 @@ class FormWatcher
 
     @$(".area").keyup(@areaChange, @nonTabChange)
 
+    @$(".remove").click @remove
+
     @unitChange()
+
+  remove: =>
+    @$el.remove()
+    @faceWatcher.update()
 
   unitFactor: ->
     if @$(".imperial").prop('checked') then 1/FTM else FTM
