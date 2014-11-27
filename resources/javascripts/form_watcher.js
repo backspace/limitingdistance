@@ -101,6 +101,7 @@
     FormWatcher.prototype.areaChange = function() {
       var distance, table;
       if (this.ready()) {
+        $("#distance").val("");
         table = this.tables[this.sprinklers()][this.group()];
         distance = table.getLD(this.width(), this.height(), this.area());
         this.$("#distance").val(distance.round(4));

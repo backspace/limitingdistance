@@ -73,6 +73,7 @@ class FormWatcher
 
   areaChange: =>
     if @ready()
+      $("#distance").val ""
       table = @tables[@sprinklers()][@group()]
       distance = table.getLD(@width(), @height(), @area())
       @$("#distance").val(distance.round(4))
