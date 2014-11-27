@@ -99,8 +99,11 @@
     };
 
     FormWatcher.prototype.areaChange = function() {
+      var distance, table;
       if (this.ready()) {
-        this.$("#distance").val((this.tables[this.sprinklers()][this.group()].getLD(this.width(), this.height, this.$("#area").val()) * (this.imperialMultiplier())).round(4));
+        table = this.tables[this.sprinklers()][this.group()];
+        distance = table.getLD(this.width(), this.height(), this.$("#area").val());
+        this.$("#distance").val(distance.round(4));
         return this.setRating();
       }
     };

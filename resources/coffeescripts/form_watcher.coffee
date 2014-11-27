@@ -73,7 +73,9 @@ class FormWatcher
 
   areaChange: =>
     if @ready()
-      @$("#distance").val((@tables[@sprinklers()][@group()].getLD(@width(), @height, @$("#area").val())*(@imperialMultiplier())).round(4))
+      table = @tables[@sprinklers()][@group()]
+      distance = table.getLD(@width(), @height(), @$("#area").val())
+      @$("#distance").val(distance.round(4))
       @setRating()
 
   imperial: =>
