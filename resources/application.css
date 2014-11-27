@@ -41,18 +41,24 @@ img.logo {
   -webkit-transition-property: width;
   transition-property: width;
   transition-duration: 1s; }
+  .faces .face {
+    margin: 15px;
+    display: inline-block; }
+  .faces:after {
+    content: " ";
+    clear: both; }
 
 .faces.faces-1 {
   width: 300px; }
 
 .faces.faces-2 {
   width: 664px; }
-  .faces.faces-2 .face {
-    margin: 15px;
-    display: inline-block; }
-  .faces.faces-2:after {
-    content: " ";
-    clear: both; }
+
+.faces.faces-3 {
+  width: 998px; }
+
+.faces.faces-4 {
+  width: 1332px; }
 
 .face-label {
   position: relative; }

@@ -15,18 +15,24 @@
       this.change = __bind(this.change, this);
       this.$ = __bind(this.$, this);
       this.unitChange = __bind(this.unitChange, this);
+      this.add = __bind(this.add, this);
       this.remove = __bind(this.remove, this);
       this.$el = $(this.element);
       this.$(".height, .width, .distance, .group1, .group2, .sprinklered, .unsprinklered").keyup(this.change, this.nonTabChange);
       this.$(".imperial, .metric").change(this.unitChange);
       this.$(".area").keyup(this.areaChange, this.nonTabChange);
       this.$(".remove").click(this.remove);
+      this.$(".add").click(this.add);
       this.unitChange();
     }
 
     FormWatcher.prototype.remove = function() {
       this.$el.remove();
       return this.faceWatcher.update();
+    };
+
+    FormWatcher.prototype.add = function() {
+      return this.faceWatcher.add(this);
     };
 
     FormWatcher.prototype.unitFactor = function() {
