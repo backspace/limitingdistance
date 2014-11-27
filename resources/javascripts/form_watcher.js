@@ -10,13 +10,14 @@
       this.areaChange = __bind(this.areaChange, this);
       this.setRating = __bind(this.setRating, this);
       this.setCalculatedArea = __bind(this.setCalculatedArea, this);
+      this.nonTabChange = __bind(this.nonTabChange, this);
       this.change = __bind(this.change, this);
       this.$ = __bind(this.$, this);
       this.unitChange = __bind(this.unitChange, this);
       this.$el = $(this.element);
-      this.$("#height, #width, #distance, #group1, #group2, #sprinklered, #unsprinklered").change(this.change).keyup(this.change);
+      this.$("#height, #width, #distance, #group1, #group2, #sprinklered, #unsprinklered").keyup(this.change, this.nonTabChange);
       this.$("#imperial, #metric").change(this.unitChange);
-      this.$("#area").change(this.areaChange).keyup(this.areaChange);
+      this.$("#area").keyup(this.areaChange, this.nonTabChange);
       this.unitChange();
     }
 
@@ -56,6 +57,13 @@
         percent = table.getPercent(this.width(), this.height(), this.distance()).toFixed(1);
         this.$("#area").val(percent);
         return this.setRating();
+      }
+    };
+
+    FormWatcher.prototype.nonTabChange = function(event) {
+      var _ref;
+      if ((_ref = event.which) !== 9 && _ref !== 16) {
+        return event.data();
       }
     };
 

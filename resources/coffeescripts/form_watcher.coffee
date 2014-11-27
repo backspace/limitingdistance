@@ -2,11 +2,11 @@ class FormWatcher
   constructor: (@element, @tables) ->
     @$el = $(@element)
 
-    @$("#height, #width, #distance, #group1, #group2, #sprinklered, #unsprinklered").change(@change).keyup(@change)
+    @$("#height, #width, #distance, #group1, #group2, #sprinklered, #unsprinklered").keyup(@change, @nonTabChange)
 
     @$("#imperial, #metric").change(@unitChange)
 
-    @$("#area").change(@areaChange).keyup(@areaChange)
+    @$("#area").keyup(@areaChange, @nonTabChange)
 
     @unitChange()
 
@@ -37,6 +37,9 @@ class FormWatcher
       percent = table.getPercent(@width(), @height(), @distance()).toFixed(1)
       @$("#area").val percent
       @setRating()
+
+  nonTabChange: (event) =>
+    event.data() unless event.which in [9, 16]
 
   setCalculatedArea: =>
     if @width() && @height()
