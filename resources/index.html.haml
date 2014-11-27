@@ -23,12 +23,14 @@
         NBC 3.2.3.1
       %h2
         Limiting Distance
-      %h3.title(contenteditable) Project Title
+      %h3
+        %input.title(value="Project Title")
     .faces.faces-2
       -2.times do |i|
         %div(class="face face-#{i + 1}")
           .face-label
-            %h3(contenteditable) Building Face
+            %h3
+              %input(value="Building Face")
             .controls
               %span.add &#8853;
               %span.remove &#8854;

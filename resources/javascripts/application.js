@@ -52,17 +52,11 @@ Array.prototype.include = function(obj) {
 
 function loaded()
 {
-  $(".height").focus();
-
-  faceWatcher = new FaceWatcher()
+  $(".title").focus();
+  faceWatcher = new FaceWatcher();
 
   new FormWatcher($(".face-1"), tables, faceWatcher);
   new FormWatcher($(".face-2"), tables, faceWatcher);
-
-  // Select entire contenteditable upon click
-  $("*[contenteditable]").click(function() {
-    document.execCommand('selectAll', false, null);
-  });
 }
 
 var FTM = 0.3048;
