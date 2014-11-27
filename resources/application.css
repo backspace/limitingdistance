@@ -42,7 +42,7 @@ img.logo {
   transition-duration: 0.5s; }
   .faces .face {
     margin: 15px;
-    display: inline-block; }
+    float: left; }
   .faces:after {
     content: " ";
     clear: both; }
@@ -152,4 +152,6 @@ label {
 footer {
   font-size: 50%;
   margin-top: 2em;
-  margin-bottom: 2em; }
+  margin-bottom: 2em;
+  clear: both;
+  text-align: center; }
