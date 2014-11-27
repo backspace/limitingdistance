@@ -32,29 +32,35 @@
               .heading Units
               %div
                 .field
-                  %input.metric{:checked => "", :name => "units", :type => "radio", :value => "metric"}/
-                  %label{:for => "metric"} Metric
+                  %label
+                    %input.metric{:checked => "", :name => "units", :type => "radio", :value => "metric"}/
+                    Metric
                 .field
-                  %input.imperial{:name => "units", :type => "radio", :value => "imperial"}/
-                  %label{:for => "imperial"} Imperial
+                  %label
+                    %input.imperial{:name => "units", :type => "radio", :value => "imperial"}/
+                    Imperial
             .section
               .heading Occupancy group
               %div
                 .field
-                  %input.group1{:checked => "", :name => "group", :type => "radio", :value => "1"}/
-                  %label{:for => "group1"} A, B, C, D, F3
+                  %label
+                    %input.group1{:checked => "", :name => "group", :type => "radio", :value => "1"}/
+                    A, B, C, D, F3
                 .field
-                  %input.group2{:name => "group", :type => "radio", :value => "2"}/
-                  %label{:for => "group2"} E, F1, F2
+                  %label
+                    %input.group2{:name => "group", :type => "radio", :value => "2"}/
+                    E, F1, F2
             .section
               .heading Fire protection
               %div
                 .field
-                  %input.unsprinklered{:checked => "", :name => "sprinklers", :type => "radio", :value => "unsprinklered"}
-                  %label{:for => "unsprinklered"} Unsprinklered
+                  %label
+                    %input.unsprinklered{:checked => "", :name => "sprinklers", :type => "radio", :value => "unsprinklered"}
+                    Unsprinklered
                 .field
-                  %input.sprinklered{:name => "sprinklers", :type => "radio", :value => "sprinklered"}
-                  %label{:for => "sprinklered"} Sprinklered
+                  %label
+                    %input.sprinklered{:name => "sprinklers", :type => "radio", :value => "sprinklered"}
+                    Sprinklered
             .section
               .heading Dimensions
               %div
