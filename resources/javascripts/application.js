@@ -55,8 +55,9 @@ function loaded()
   $(".title").focus();
   faceWatcher = new FaceWatcher();
 
-  new FormWatcher($(".face-1"), tables, faceWatcher);
-  new FormWatcher($(".face-2"), tables, faceWatcher);
+  for (var i = 1; i <= 4; i++) {
+    new FormWatcher($(".face-" + i), tables, faceWatcher);
+  }
 }
 
 var FTM = 0.3048;
