@@ -52,7 +52,7 @@ Array.prototype.include = function(obj) {
 
 function loaded()
 {
-  $("#height").focus();
+  $(".height").focus();
 
   new FormWatcher($("form"), tables);
 
