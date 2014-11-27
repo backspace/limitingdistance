@@ -11,7 +11,7 @@ class FormWatcher
     @$(".remove").click @remove
     @$(".add").click @add
 
-    @unitChange()
+    @unitChange(false)
 
   remove: =>
     @$el.remove()
@@ -23,12 +23,13 @@ class FormWatcher
   unitFactor: ->
     if @$(".imperial").prop('checked') then 1/FTM else FTM
 
-  unitChange: =>
+  unitChange: (convert) =>
     factor = @unitFactor()
 
-    @$(".width, .height, .distance").each (index, field) ->
-      field = $(field)
-      field.val((field.val()*factor).round(4)) if field.val()
+    if convert
+      @$(".width, .height, .distance").each (index, field) ->
+        field = $(field)
+        field.val((field.val()*factor).round(4)) if field.val()
 
     unit = if @imperial() then "ft" else "m"
     @$(".units").html unit

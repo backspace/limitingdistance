@@ -23,7 +23,7 @@
       this.$(".area").keyup(this.areaChange, this.nonTabChange);
       this.$(".remove").click(this.remove);
       this.$(".add").click(this.add);
-      this.unitChange();
+      this.unitChange(false);
     }
 
     FormWatcher.prototype.remove = function() {
@@ -43,15 +43,17 @@
       }
     };
 
-    FormWatcher.prototype.unitChange = function() {
+    FormWatcher.prototype.unitChange = function(convert) {
       var factor, unit;
       factor = this.unitFactor();
-      this.$(".width, .height, .distance").each(function(index, field) {
-        field = $(field);
-        if (field.val()) {
-          return field.val((field.val() * factor).round(4));
-        }
-      });
+      if (convert) {
+        this.$(".width, .height, .distance").each(function(index, field) {
+          field = $(field);
+          if (field.val()) {
+            return field.val((field.val() * factor).round(4));
+          }
+        });
+      }
       unit = this.imperial() ? "ft" : "m";
       return this.$(".units").html(unit);
     };
