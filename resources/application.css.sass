@@ -2,6 +2,8 @@ $light: rgb(57,182,233)
 $dark: rgb(0,87,141)
 
 $width: 300px
+$face-space: 30px
+
 $rounding: 15px
 
 @import 'cooperhewitt/stylesheet'
@@ -36,9 +38,27 @@ img.logo
   margin-top: 20px
   max-width: 100%
 
-#content
+.common, .faces, footer
   margin: 0px auto
+
+.common, .face, footer
   width: $width
+
+.faces.faces-1
+  width: $width
+
+.faces.faces-2
+  width: $width*2 + $face-space*2 + 4
+
+  .face
+    margin: $face-space/2
+    display: inline-block
+
+  &:after
+    content: ' '
+    clear: both
+
+
 
 h1, h2, h3
   width: $width

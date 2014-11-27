@@ -15,7 +15,7 @@
     %meta(name="keywords" content="Limiting distance, NBCC, NBCC 3.2.3.1, Unprotected opening area, Exposed building face")
     %meta(name="author" content="Buck Doyle")
   %body
-    #content
+    .common
       %a(href="http://arccadd.com")
         %img.logo{:src => "resources/logo.png"}
       %h1
@@ -23,64 +23,67 @@
       %h2
         Limiting Distance
       %h3.title(contenteditable) Project Title
-      %h3.face(contenteditable) Building Face
-      %form
-        .section
-          .heading Units
-          %div
-            .field
-              %input.metric{:checked => "", :name => "units", :type => "radio", :value => "metric"}/
-              %label{:for => "metric"} Metric
-            .field
-              %input.imperial{:name => "units", :type => "radio", :value => "imperial"}/
-              %label{:for => "imperial"} Imperial
-        .section
-          .heading Occupancy group
-          %div
-            .field
-              %input.group1{:checked => "", :name => "group", :type => "radio", :value => "1"}/
-              %label{:for => "group1"} A, B, C, D, F3
-            .field
-              %input.group2{:name => "group", :type => "radio", :value => "2"}/
-              %label{:for => "group2"} E, F1, F2
-        .section
-          .heading Fire protection
-          %div
-            .field
-              %input.unsprinklered{:checked => "", :name => "sprinklers", :type => "radio", :value => "unsprinklered"}
-              %label{:for => "unsprinklered"} Unsprinklered
-            .field
-              %input.sprinklered{:name => "sprinklers", :type => "radio", :value => "sprinklered"}
-              %label{:for => "sprinklered"} Sprinklered
-        .section
-          .heading Dimensions
-          %div
-            .field
-              %input.height{:name => "height", :type => "text", :size => field_width}/
-              .units>
-              %label{:for => "height"} Height
-            .field
-              %input.width{:name => "width", :type => "text", :size => field_width}/
-              .units>
-              %label{:for => "width"} Width
-            .field.calculated-area
-              %input(type="text" size=field_width tabindex="-1")/
-              .units.squared>
-              %label Building face area
-            .field
-              %input.distance{:name => "distance", :type => "text", :size => field_width}/
-              .units>
-              %label{:for => "distance"} Limiting distance
-        .section
-          .heading Unprotected opening area
-          %div
-            %input.area{:name => "area", :type => "text", :size => field_width}/
-            %span><
-              \%
-            .units.squared
-        .section
-          .heading Exposed building face
-          %div
-            .rating &nbsp;
-      %footer
-        ="Developed by <a href='http://github.com/backspace'>Buck Doyle</a> for <a href='http://arccadd.com'>Arccadd Architecture Inc</a>."
+    .faces.faces-2
+      -2.times do |i|
+        %div(class="face face-#{i + 1}")
+          %h3.face-label(contenteditable) Building Face
+          %form
+            .section
+              .heading Units
+              %div
+                .field
+                  %input.metric{:checked => "", :name => "units", :type => "radio", :value => "metric"}/
+                  %label{:for => "metric"} Metric
+                .field
+                  %input.imperial{:name => "units", :type => "radio", :value => "imperial"}/
+                  %label{:for => "imperial"} Imperial
+            .section
+              .heading Occupancy group
+              %div
+                .field
+                  %input.group1{:checked => "", :name => "group", :type => "radio", :value => "1"}/
+                  %label{:for => "group1"} A, B, C, D, F3
+                .field
+                  %input.group2{:name => "group", :type => "radio", :value => "2"}/
+                  %label{:for => "group2"} E, F1, F2
+            .section
+              .heading Fire protection
+              %div
+                .field
+                  %input.unsprinklered{:checked => "", :name => "sprinklers", :type => "radio", :value => "unsprinklered"}
+                  %label{:for => "unsprinklered"} Unsprinklered
+                .field
+                  %input.sprinklered{:name => "sprinklers", :type => "radio", :value => "sprinklered"}
+                  %label{:for => "sprinklered"} Sprinklered
+            .section
+              .heading Dimensions
+              %div
+                .field
+                  %input.height{:name => "height", :type => "text", :size => field_width}/
+                  .units>
+                  %label{:for => "height"} Height
+                .field
+                  %input.width{:name => "width", :type => "text", :size => field_width}/
+                  .units>
+                  %label{:for => "width"} Width
+                .field.calculated-area
+                  %input(type="text" size=field_width tabindex="-1")/
+                  .units.squared>
+                  %label Building face area
+                .field
+                  %input.distance{:name => "distance", :type => "text", :size => field_width}/
+                  .units>
+                  %label{:for => "distance"} Limiting distance
+            .section
+              .heading Unprotected opening area
+              %div
+                %input.area{:name => "area", :type => "text", :size => field_width}/
+                %span><
+                  \%
+                .units.squared
+            .section
+              .heading Exposed building face
+              %div
+                .rating &nbsp;
+    %footer
+      ="Developed by <a href='http://github.com/backspace'>Buck Doyle</a> for <a href='http://arccadd.com'>Arccadd Architecture Inc</a>."

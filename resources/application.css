@@ -31,9 +31,23 @@ img.logo {
   margin-top: 20px;
   max-width: 100%; }
 
-#content {
-  margin: 0px auto;
+.common, .faces, footer {
+  margin: 0px auto; }
+
+.common, .face, footer {
   width: 300px; }
+
+.faces.faces-1 {
+  width: 300px; }
+
+.faces.faces-2 {
+  width: 664px; }
+  .faces.faces-2 .face {
+    margin: 15px;
+    display: inline-block; }
+  .faces.faces-2:after {
+    content: " ";
+    clear: both; }
 
 h1, h2, h3 {
   width: 300px;

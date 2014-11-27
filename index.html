@@ -13,7 +13,7 @@
     <meta content='Buck Doyle' name='author'>
   </head>
   <body>
-    <div id='content'>
+    <div class='common'>
       <a href='http://arccadd.com'>
         <img class='logo' src='resources/logo.png'>
       </a>
@@ -24,80 +24,157 @@
         Limiting Distance
       </h2>
       <h3 class='title' contenteditable>Project Title</h3>
-      <h3 class='face' contenteditable>Building Face</h3>
-      <form>
-        <div class='section'>
-          <div class='heading'>Units</div>
-          <div>
-            <div class='field'>
-              <input checked='' class='metric' name='units' type='radio' value='metric'>
-              <label for='metric'>Metric</label>
-            </div>
-            <div class='field'>
-              <input class='imperial' name='units' type='radio' value='imperial'>
-              <label for='imperial'>Imperial</label>
-            </div>
-          </div>
-        </div>
-        <div class='section'>
-          <div class='heading'>Occupancy group</div>
-          <div>
-            <div class='field'>
-              <input checked='' class='group1' name='group' type='radio' value='1'>
-              <label for='group1'>A, B, C, D, F3</label>
-            </div>
-            <div class='field'>
-              <input class='group2' name='group' type='radio' value='2'>
-              <label for='group2'>E, F1, F2</label>
-            </div>
-          </div>
-        </div>
-        <div class='section'>
-          <div class='heading'>Fire protection</div>
-          <div>
-            <div class='field'>
-              <input checked='' class='unsprinklered' name='sprinklers' type='radio' value='unsprinklered'>
-              <label for='unsprinklered'>Unsprinklered</label>
-            </div>
-            <div class='field'>
-              <input class='sprinklered' name='sprinklers' type='radio' value='sprinklered'>
-              <label for='sprinklered'>Sprinklered</label>
-            </div>
-          </div>
-        </div>
-        <div class='section'>
-          <div class='heading'>Dimensions</div>
-          <div>
-            <div class='field'>
-              <input class='height' name='height' size='6' type='text'><div class='units'></div><label for='height'>Height</label>
-            </div>
-            <div class='field'>
-              <input class='width' name='width' size='6' type='text'><div class='units'></div><label for='width'>Width</label>
-            </div>
-            <div class='field calculated-area'>
-              <input size='6' tabindex='-1' type='text'><div class='units squared'></div><label>Building face area</label>
-            </div>
-            <div class='field'>
-              <input class='distance' name='distance' size='6' type='text'><div class='units'></div><label for='distance'>Limiting distance</label>
-            </div>
-          </div>
-        </div>
-        <div class='section'>
-          <div class='heading'>Unprotected opening area</div>
-          <div>
-            <input class='area' name='area' size='6' type='text'><span>%</span><div class='units squared'></div>
-          </div>
-        </div>
-        <div class='section'>
-          <div class='heading'>Exposed building face</div>
-          <div>
-            <div class='rating'>&nbsp;</div>
-          </div>
-        </div>
-      </form>
-      <footer>
-        Developed by <a href='http://github.com/backspace'>Buck Doyle</a> for <a href='http://arccadd.com'>Arccadd Architecture Inc</a>.
-      </footer>
     </div>
+    <div class='faces faces-2'>
+      <div class='face face-1'>
+        <h3 class='face-label' contenteditable>Building Face</h3>
+        <form>
+          <div class='section'>
+            <div class='heading'>Units</div>
+            <div>
+              <div class='field'>
+                <input checked='' class='metric' name='units' type='radio' value='metric'>
+                <label for='metric'>Metric</label>
+              </div>
+              <div class='field'>
+                <input class='imperial' name='units' type='radio' value='imperial'>
+                <label for='imperial'>Imperial</label>
+              </div>
+            </div>
+          </div>
+          <div class='section'>
+            <div class='heading'>Occupancy group</div>
+            <div>
+              <div class='field'>
+                <input checked='' class='group1' name='group' type='radio' value='1'>
+                <label for='group1'>A, B, C, D, F3</label>
+              </div>
+              <div class='field'>
+                <input class='group2' name='group' type='radio' value='2'>
+                <label for='group2'>E, F1, F2</label>
+              </div>
+            </div>
+          </div>
+          <div class='section'>
+            <div class='heading'>Fire protection</div>
+            <div>
+              <div class='field'>
+                <input checked='' class='unsprinklered' name='sprinklers' type='radio' value='unsprinklered'>
+                <label for='unsprinklered'>Unsprinklered</label>
+              </div>
+              <div class='field'>
+                <input class='sprinklered' name='sprinklers' type='radio' value='sprinklered'>
+                <label for='sprinklered'>Sprinklered</label>
+              </div>
+            </div>
+          </div>
+          <div class='section'>
+            <div class='heading'>Dimensions</div>
+            <div>
+              <div class='field'>
+                <input class='height' name='height' size='6' type='text'><div class='units'></div><label for='height'>Height</label>
+              </div>
+              <div class='field'>
+                <input class='width' name='width' size='6' type='text'><div class='units'></div><label for='width'>Width</label>
+              </div>
+              <div class='field calculated-area'>
+                <input size='6' tabindex='-1' type='text'><div class='units squared'></div><label>Building face area</label>
+              </div>
+              <div class='field'>
+                <input class='distance' name='distance' size='6' type='text'><div class='units'></div><label for='distance'>Limiting distance</label>
+              </div>
+            </div>
+          </div>
+          <div class='section'>
+            <div class='heading'>Unprotected opening area</div>
+            <div>
+              <input class='area' name='area' size='6' type='text'><span>%</span><div class='units squared'></div>
+            </div>
+          </div>
+          <div class='section'>
+            <div class='heading'>Exposed building face</div>
+            <div>
+              <div class='rating'>&nbsp;</div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class='face face-2'>
+        <h3 class='face-label' contenteditable>Building Face</h3>
+        <form>
+          <div class='section'>
+            <div class='heading'>Units</div>
+            <div>
+              <div class='field'>
+                <input checked='' class='metric' name='units' type='radio' value='metric'>
+                <label for='metric'>Metric</label>
+              </div>
+              <div class='field'>
+                <input class='imperial' name='units' type='radio' value='imperial'>
+                <label for='imperial'>Imperial</label>
+              </div>
+            </div>
+          </div>
+          <div class='section'>
+            <div class='heading'>Occupancy group</div>
+            <div>
+              <div class='field'>
+                <input checked='' class='group1' name='group' type='radio' value='1'>
+                <label for='group1'>A, B, C, D, F3</label>
+              </div>
+              <div class='field'>
+                <input class='group2' name='group' type='radio' value='2'>
+                <label for='group2'>E, F1, F2</label>
+              </div>
+            </div>
+          </div>
+          <div class='section'>
+            <div class='heading'>Fire protection</div>
+            <div>
+              <div class='field'>
+                <input checked='' class='unsprinklered' name='sprinklers' type='radio' value='unsprinklered'>
+                <label for='unsprinklered'>Unsprinklered</label>
+              </div>
+              <div class='field'>
+                <input class='sprinklered' name='sprinklers' type='radio' value='sprinklered'>
+                <label for='sprinklered'>Sprinklered</label>
+              </div>
+            </div>
+          </div>
+          <div class='section'>
+            <div class='heading'>Dimensions</div>
+            <div>
+              <div class='field'>
+                <input class='height' name='height' size='6' type='text'><div class='units'></div><label for='height'>Height</label>
+              </div>
+              <div class='field'>
+                <input class='width' name='width' size='6' type='text'><div class='units'></div><label for='width'>Width</label>
+              </div>
+              <div class='field calculated-area'>
+                <input size='6' tabindex='-1' type='text'><div class='units squared'></div><label>Building face area</label>
+              </div>
+              <div class='field'>
+                <input class='distance' name='distance' size='6' type='text'><div class='units'></div><label for='distance'>Limiting distance</label>
+              </div>
+            </div>
+          </div>
+          <div class='section'>
+            <div class='heading'>Unprotected opening area</div>
+            <div>
+              <input class='area' name='area' size='6' type='text'><span>%</span><div class='units squared'></div>
+            </div>
+          </div>
+          <div class='section'>
+            <div class='heading'>Exposed building face</div>
+            <div>
+              <div class='rating'>&nbsp;</div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <footer>
+      Developed by <a href='http://github.com/backspace'>Buck Doyle</a> for <a href='http://arccadd.com'>Arccadd Architecture Inc</a>.
+    </footer>
   </body>
 </html>

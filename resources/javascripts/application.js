@@ -54,7 +54,8 @@ function loaded()
 {
   $(".height").focus();
 
-  new FormWatcher($("form"), tables);
+  new FormWatcher($(".face-1 form"), tables);
+  new FormWatcher($(".face-2 form"), tables);
 
   // Select entire contenteditable upon click
   $("*[contenteditable]").click(function() {
