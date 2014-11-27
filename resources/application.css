@@ -37,6 +37,11 @@ img.logo {
 .common, .face, footer {
   width: 300px; }
 
+.faces {
+  -webkit-transition-property: width;
+  transition-property: width;
+  transition-duration: 1s; }
+
 .faces.faces-1 {
   width: 300px; }
 
