@@ -50,7 +50,7 @@ class FormWatcher
       @$("#calculated-area input").val ""
 
   setRating: =>
-    area = @$("#area").val()
+    area = @area()
 
     g1 = @group() == '1'
     notes = []
@@ -74,7 +74,7 @@ class FormWatcher
   areaChange: =>
     if @ready()
       table = @tables[@sprinklers()][@group()]
-      distance = table.getLD(@width(), @height(), @$("#area").val())
+      distance = table.getLD(@width(), @height(), @area())
       @$("#distance").val(distance.round(4))
       @setRating()
 
@@ -95,6 +95,9 @@ class FormWatcher
 
   distance: ->
     @$("#distance").val()*@imperialMultiplier()
+
+  area: ->
+    @$("#area").val()
 
   group: ->
     if @$("#group1").prop "checked" then @$("#group1").val() else @$("#group2").val()

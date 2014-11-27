@@ -76,7 +76,7 @@
 
     FormWatcher.prototype.setRating = function() {
       var area, g1, notes, rating;
-      area = this.$("#area").val();
+      area = this.area();
       g1 = this.group() === '1';
       notes = [];
       if (area <= 10) {
@@ -102,7 +102,7 @@
       var distance, table;
       if (this.ready()) {
         table = this.tables[this.sprinklers()][this.group()];
-        distance = table.getLD(this.width(), this.height(), this.$("#area").val());
+        distance = table.getLD(this.width(), this.height(), this.area());
         this.$("#distance").val(distance.round(4));
         return this.setRating();
       }
@@ -134,6 +134,10 @@
 
     FormWatcher.prototype.distance = function() {
       return this.$("#distance").val() * this.imperialMultiplier();
+    };
+
+    FormWatcher.prototype.area = function() {
+      return this.$("#area").val();
     };
 
     FormWatcher.prototype.group = function() {
