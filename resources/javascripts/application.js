@@ -54,140 +54,15 @@ function loaded()
 {
   $("#height").focus();
 
-  $("#height, #width, #distance, #group1, #group2, #sprinklered, #unsprinklered").change(change).keyup(change);
-
-  $("#imperial, #metric").change(unitChange);
-
-  $("#area").change(areaChange).keyup(areaChange);
+  new FormWatcher($("form"), tables);
 
   // Select entire contenteditable upon click
   $("*[contenteditable]").click(function() {
     document.execCommand('selectAll', false, null);
   });
-
-  unitChange();
-}
-
-function unitFactor()
-{
-  return $("#imperial").prop('checked') ? 1/FTM : FTM;
-}
-
-function unitChange()
-{
-  var factor = unitFactor();
-  ("width height distance").split(" ").forEach(function(field) {
-    var selector = "#" + field;
-    if ($(selector).val()) $(selector).val(($(selector).val()*factor).round(4));
-  });
-
-  var unit = imperial() ? "ft" : "m";
-
-  $(".units").html(unit);
-}
-
-function ready()
-{
-  return !($("#height").val().blank() || $("#width").val().blank() || ($("#distance").val().blank() && $("#area").val().blank()))
-}
-
-function change()
-{
-  setCalculatedArea();
-
-  if (ready())
-  {
-    table = tables[sprinklers()][group()];
-    $("#area").val(table.getPercent(width(), height(), distance()).toFixed(1));
-    setRating();
-  }
-}
-
-function setCalculatedArea() {
-  if (width() && height()) {
-    // Calculate the area before unit conversion
-    var w = parseFloat($("#width").val());
-    var h = parseFloat($("#height").val());
-
-    var area = w*h;
-    if (area) area = area.round(4);
-    $("#calculated-area input").val(area);
-  }
-  else {
-    $("#calculated-area input").val("");
-  }
-}
-
-function setRating()
-{
-  var area = $("#area").val();
-  var rating;
-  var g1 = group() == 1;
-   notes = [];
-
-  if (area <= 10)
-  {
-    rating = g1 ? "1h" : "2h"
-    notes.push("Non-combustible construction");
-    notes.push("Non-combustible cladding");
-  }
-  else if (area > 10 && area < 25)
-  {
-    rating = g1 ? "1h" : "2h";
-    notes.push("Combustible construction");
-    notes.push("Non-combustible cladding");
-  }
-  else
-  {
-    notes.push("Combustible construction");
-    notes.push("Combustible cladding");
-    rating = g1 ? "45min" : "1h";
-  }
-
-  if (area < 100) notes.push(rating + " fire-resistance rating");
-  $("#rating").html(notes.join("<br/>"));
-}
-
-function areaChange()
-{
-  if (ready())
-  {
-    $("#distance").val((tables[sprinklers()][group()].getLD(width(), height(), $("#area").val())*(imperial() ? 1/FTM : 1)).round(4));
-    setRating();
-  }
-}
-
-function imperial()
-{
-  return $("#imperial").prop("checked");
 }
 
 var FTM = 0.3048;
-
-function height()
-{
-  return $("#height").val()*(imperial() ? FTM : 1);
-}
-
-function width()
-{
-  return $("#width").val()*(imperial() ? FTM : 1);
-}
-
-function sprinklers()
-{
-  return $("#sprinklered").prop("checked");
-}
-
-function distance()
-{
-  return $("#distance").val()*(imperial() ? FTM : 1);
-}
-
-function group()
-{
-  return $("#group1").prop("checked") ? $("#group1").val() : $("#group2").val();
-}
 
 $(loaded);
 
