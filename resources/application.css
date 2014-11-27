@@ -38,9 +38,8 @@ img.logo {
   width: 300px; }
 
 .faces {
-  -webkit-transition-property: width;
   transition-property: width;
-  transition-duration: 1s; }
+  transition-duration: 0.5s; }
   .faces .face {
     margin: 15px;
     display: inline-block; }
