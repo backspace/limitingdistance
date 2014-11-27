@@ -25,6 +25,40 @@
         Limiting Distance
       %h3
         %input.title(value="Project Title")
+      %form
+        .section
+          .heading Units
+          %div
+            .field
+              %label
+                %input.metric{:checked => "", :name => "units", :type => "radio", :value => "metric"}/
+                Metric
+            .field
+              %label
+                %input.imperial{:name => "units", :type => "radio", :value => "imperial"}/
+                Imperial
+        .section
+          .heading Occupancy group
+          %div
+            .field
+              %label
+                %input.group1{:checked => "", :name => "group", :type => "radio", :value => "1"}/
+                A, B, C, D, F3
+            .field
+              %label
+                %input.group2{:name => "group", :type => "radio", :value => "2"}/
+                E, F1, F2
+        .section
+          .heading Fire protection
+          %div
+            .field
+              %label
+                %input.unsprinklered{:checked => "", :name => "sprinklers", :type => "radio", :value => "unsprinklered"}
+                Unsprinklered
+            .field
+              %label
+                %input.sprinklered{:name => "sprinklers", :type => "radio", :value => "sprinklered"}
+                Sprinklered
     .faces.faces-2
       -2.times do |i|
         %div(class="face face-#{i + 1}")
@@ -34,40 +68,6 @@
             .controls
               %span.add &#8853;
               %span.remove &#8854;
-          %form
-            .section
-              .heading Units
-              %div
-                .field
-                  %label
-                    %input.metric{:checked => "", :name => "units", :type => "radio", :value => "metric"}/
-                    Metric
-                .field
-                  %label
-                    %input.imperial{:name => "units", :type => "radio", :value => "imperial"}/
-                    Imperial
-            .section
-              .heading Occupancy group
-              %div
-                .field
-                  %label
-                    %input.group1{:checked => "", :name => "group", :type => "radio", :value => "1"}/
-                    A, B, C, D, F3
-                .field
-                  %label
-                    %input.group2{:name => "group", :type => "radio", :value => "2"}/
-                    E, F1, F2
-            .section
-              .heading Fire protection
-              %div
-                .field
-                  %label
-                    %input.unsprinklered{:checked => "", :name => "sprinklers", :type => "radio", :value => "unsprinklered"}
-                    Unsprinklered
-                .field
-                  %label
-                    %input.sprinklered{:name => "sprinklers", :type => "radio", :value => "sprinklered"}
-                    Sprinklered
             .section
               .heading Dimensions
               %div

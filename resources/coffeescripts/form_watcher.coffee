@@ -2,9 +2,11 @@ class FormWatcher
   constructor: (@element, @tables, @faceWatcher) ->
     @$el = $(@element)
 
-    @$(".height, .width, .distance, .group1, .group2, .sprinklered, .unsprinklered").keyup(@change, @nonTabChange)
+    @$(".height, .width, .distance").keyup(@change, @nonTabChange)
+    # TODO now that common fields are extracted this is questionable
+    $(".group1, .group2, .sprinklered, .unsprinklered").change(@change)
 
-    @$(".imperial, .metric").change(@unitChange)
+    $(".imperial, .metric").change(@unitChange)
 
     @$(".area").keyup(@areaChange, @nonTabChange)
 
@@ -21,7 +23,7 @@ class FormWatcher
     @faceWatcher.add(@)
 
   unitFactor: ->
-    if @$(".imperial").prop('checked') then 1/FTM else FTM
+    if $(".imperial").prop('checked') then 1/FTM else FTM
 
   unitChange: (convert) =>
     factor = @unitFactor()
@@ -94,7 +96,7 @@ class FormWatcher
       @setRating()
 
   imperial: =>
-    @$(".imperial").prop "checked"
+    $(".imperial").prop "checked"
 
   imperialMultiplier: ->
     if @imperial() then 1/FTM else 1
@@ -106,7 +108,7 @@ class FormWatcher
     @$(".width").val()*@imperialMultiplier()
 
   sprinklers: ->
-    @$(".sprinklered").prop "checked"
+    $(".sprinklered").prop "checked"
 
   distance: ->
     @$(".distance").val()*@imperialMultiplier()
@@ -115,6 +117,6 @@ class FormWatcher
     @$(".area").val()
 
   group: ->
-    if @$(".group1").prop "checked" then @$(".group1").val() else @$(".group2").val()
+    if $(".group1").prop "checked" then $(".group1").val() else $(".group2").val()
 
 window.FormWatcher = FormWatcher

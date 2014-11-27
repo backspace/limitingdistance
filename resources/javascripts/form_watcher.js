@@ -18,8 +18,9 @@
       this.add = __bind(this.add, this);
       this.remove = __bind(this.remove, this);
       this.$el = $(this.element);
-      this.$(".height, .width, .distance, .group1, .group2, .sprinklered, .unsprinklered").keyup(this.change, this.nonTabChange);
-      this.$(".imperial, .metric").change(this.unitChange);
+      this.$(".height, .width, .distance").keyup(this.change, this.nonTabChange);
+      $(".group1, .group2, .sprinklered, .unsprinklered").change(this.change);
+      $(".imperial, .metric").change(this.unitChange);
       this.$(".area").keyup(this.areaChange, this.nonTabChange);
       this.$(".remove").click(this.remove);
       this.$(".add").click(this.add);
@@ -36,7 +37,7 @@
     };
 
     FormWatcher.prototype.unitFactor = function() {
-      if (this.$(".imperial").prop('checked')) {
+      if ($(".imperial").prop('checked')) {
         return 1 / FTM;
       } else {
         return FTM;
@@ -135,7 +136,7 @@
     };
 
     FormWatcher.prototype.imperial = function() {
-      return this.$(".imperial").prop("checked");
+      return $(".imperial").prop("checked");
     };
 
     FormWatcher.prototype.imperialMultiplier = function() {
@@ -155,7 +156,7 @@
     };
 
     FormWatcher.prototype.sprinklers = function() {
-      return this.$(".sprinklered").prop("checked");
+      return $(".sprinklered").prop("checked");
     };
 
     FormWatcher.prototype.distance = function() {
@@ -167,10 +168,10 @@
     };
 
     FormWatcher.prototype.group = function() {
-      if (this.$(".group1").prop("checked")) {
-        return this.$(".group1").val();
+      if ($(".group1").prop("checked")) {
+        return $(".group1").val();
       } else {
-        return this.$(".group2").val();
+        return $(".group2").val();
       }
     };
 
