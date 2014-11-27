@@ -22,10 +22,11 @@
     }
 
     FormWatcher.prototype.unitFactor = function() {
-      var _ref;
-      return (_ref = this.$(".imperial").prop('checked')) != null ? _ref : 1 / {
-        FTM: FTM
-      };
+      if (this.$(".imperial").prop('checked')) {
+        return 1 / FTM;
+      } else {
+        return FTM;
+      }
     };
 
     FormWatcher.prototype.unitChange = function() {

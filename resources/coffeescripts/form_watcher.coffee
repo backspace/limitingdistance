@@ -11,7 +11,7 @@ class FormWatcher
     @unitChange()
 
   unitFactor: ->
-    @$(".imperial").prop('checked') ? 1/FTM : FTM
+    if @$(".imperial").prop('checked') then 1/FTM else FTM
 
   unitChange: =>
     factor = @unitFactor()
