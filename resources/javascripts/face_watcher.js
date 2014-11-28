@@ -16,7 +16,7 @@
     FaceWatcher.prototype.add = function(original) {
       var cloned;
       cloned = $(original.element).clone()[0];
-      new FormWatcher(cloned, original.tables, this);
+      new FormWatcher(cloned, original.calculator, this);
       $(cloned).appendTo(".faces");
       return this.update();
     };

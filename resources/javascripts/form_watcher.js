@@ -3,9 +3,9 @@
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   FormWatcher = (function() {
-    function FormWatcher(element, tables, faceWatcher) {
+    function FormWatcher(element, calculator, faceWatcher) {
       this.element = element;
-      this.tables = tables;
+      this.calculator = calculator;
       this.faceWatcher = faceWatcher;
       this.imperial = __bind(this.imperial, this);
       this.areaChange = __bind(this.areaChange, this);
@@ -68,12 +68,17 @@
     };
 
     FormWatcher.prototype.change = function() {
-      var percent, table;
+      var percent;
       this.setCalculatedArea();
       if (this.ready()) {
-        table = this.tables[this.sprinklers()][this.group()];
-        percent = table.getPercent(this.width(), this.height(), this.distance()).toFixed(1);
-        this.$(".area").val(percent);
+        percent = this.calculator.getPercent({
+          sprinklered: this.sprinklers(),
+          group: this.group(),
+          width: this.width(),
+          height: this.height(),
+          limiting_distance: this.distance()
+        });
+        this.$(".area").val(percent.toFixed(1));
         return this.setRating();
       }
     };
@@ -125,11 +130,16 @@
     };
 
     FormWatcher.prototype.areaChange = function() {
-      var distance, table;
+      var distance;
       if (this.ready()) {
         $(".distance").val("");
-        table = this.tables[this.sprinklers()][this.group()];
-        distance = table.getLD(this.width(), this.height(), this.area());
+        distance = this.calculator.getLimitingDistance({
+          sprinklered: this.sprinklers(),
+          group: this.group(),
+          width: this.width(),
+          height: this.height(),
+          unprotected_opening_area: this.area()
+        });
         this.$(".distance").val(distance.round(4));
         return this.setRating();
       }

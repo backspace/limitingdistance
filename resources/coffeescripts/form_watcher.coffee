@@ -1,5 +1,5 @@
 class FormWatcher
-  constructor: (@element, @tables, @faceWatcher) ->
+  constructor: (@element, @calculator, @faceWatcher) ->
     @$el = $(@element)
 
     @$(".height, .width, .distance").keyup(@change, @nonTabChange)
@@ -46,9 +46,14 @@ class FormWatcher
     @setCalculatedArea()
 
     if @ready()
-      table = @tables[@sprinklers()][@group()]
-      percent = table.getPercent(@width(), @height(), @distance()).toFixed(1)
-      @$(".area").val percent
+      percent = @calculator.getPercent
+        sprinklered: @sprinklers()
+        group: @group()
+        width: @width()
+        height: @height()
+        limiting_distance: @distance()
+
+      @$(".area").val percent.toFixed(1)
       @setRating()
 
   nonTabChange: (event) =>
@@ -90,8 +95,14 @@ class FormWatcher
   areaChange: =>
     if @ready()
       $(".distance").val ""
-      table = @tables[@sprinklers()][@group()]
-      distance = table.getLD(@width(), @height(), @area())
+
+      distance = @calculator.getLimitingDistance
+        sprinklered: @sprinklers()
+        group: @group()
+        width: @width()
+        height: @height()
+        unprotected_opening_area: @area()
+
       @$(".distance").val(distance.round(4))
       @setRating()
 

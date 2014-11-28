@@ -6,7 +6,7 @@ class FaceWatcher
 
   add: (original) =>
     cloned = $(original.element).clone()[0]
-    new FormWatcher(cloned, original.tables, @)
+    new FormWatcher(cloned, original.calculator, @)
     $(cloned).appendTo(".faces")
     @update()
 
