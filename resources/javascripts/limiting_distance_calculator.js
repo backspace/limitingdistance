@@ -2,6 +2,10 @@
   var LimitingDistanceCalculator;
 
   LimitingDistanceCalculator = (function() {
+    LimitingDistanceCalculator.GROUP_ABCDF3 = "1";
+
+    LimitingDistanceCalculator.GROUP_EF1F2 = "2";
+
     function LimitingDistanceCalculator(tables) {
       this.tables = tables;
     }

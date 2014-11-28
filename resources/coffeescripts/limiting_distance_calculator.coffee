@@ -1,4 +1,7 @@
 class LimitingDistanceCalculator
+  @GROUP_ABCDF3 = "1"
+  @GROUP_EF1F2 = "2"
+
   constructor: (@tables) ->
 
   getPercent: (options) ->
