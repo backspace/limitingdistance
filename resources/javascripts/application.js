@@ -96,7 +96,7 @@ function test() {
   for (var i = 0; i < percentExamples.length; i++) {
     e = percentExamples[i];
 
-    parameters = {
+    percentParameters = {
       sprinklered: e[0],
       group: e[1],
       width: e[2],
@@ -104,17 +104,34 @@ function test() {
       limiting_distance: e[4]
     };
 
-    got = calculator.getPercent(parameters);
+    percentGot = calculator.getPercent(percentParameters);
 
-    expected = e[5];
+    percentExpected = e[5];
 
-    if (got == expected) {
-      console.log(got + " == " + expected);
+    if (percentGot == percentExpected) {
+      console.log(percentGot + " == " + percentExpected);
+
+      distanceParameters = percentParameters;
+      distanceParameters.unprotected_opening_area = percentGot;
+
+      distanceGot = calculator.getLimitingDistance(distanceParameters);
+      distanceExpected = percentParameters.limiting_distance;
+      delete distanceParameters.limiting_distance;
+
+      if (distanceGot == distanceExpected) {
+        console.log(" and " + distanceGot + " == " + distanceExpected);
+      }
+      else
+      {
+        errors++;
+        console.log("  Mismatch testing this distance calculation:", distanceParameters);
+        console.log("  Expected " + distanceExpected + ", got " + distanceGot);
+      }
     }
     else {
       errors++;
-      console.log("Mismatch testing this calculation:", parameters);
-      console.log("Expected " + expected + ", got " + got);
+      console.log("Mismatch testing this percent calculation:", percentParameters);
+      console.log("Expected " + percentExpected + ", got " + percentGot);
     }
   }
 
