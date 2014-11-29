@@ -76,7 +76,8 @@ h1, h2, h3 {
     display: inline-block; }
 
 h1 {
-  text-shadow: 3px 3px 5px #bbb; }
+  text-shadow: 3px 3px 5px #bbb;
+  margin: 1rem 0 0.5rem; }
 
 h2 {
   margin-top: 0; }
@@ -89,6 +90,10 @@ h3.face {
 h3 input {
   text-align: center;
   border-bottom: 0; }
+
+h2, h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem; }
 
 input {
   font-family: inherit;
