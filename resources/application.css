@@ -49,15 +49,17 @@ img.logo {
 
 .faces.faces-1 {
   width: 300px; }
+  .faces.faces-1 .face {
+    margin: 0; }
 
 .faces.faces-2 {
-  width: 664px; }
+  width: 660px; }
 
 .faces.faces-3 {
-  width: 998px; }
+  width: 990px; }
 
 .faces.faces-4 {
-  width: 1332px; }
+  width: 1320px; }
 
 .face-label {
   position: relative; }
