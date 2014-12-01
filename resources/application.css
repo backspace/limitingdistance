@@ -80,6 +80,16 @@ h1, h2, h3 {
 h1 {
   text-shadow: 3px 3px 5px #bbb;
   margin: 1rem 0 0.5rem; }
+  h1 select, h1 option {
+    background: transparent;
+    border: 0;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit; }
+  h1 select {
+    -webkit-appearance: none; }
+    h1 select:hover {
+      -webkit-appearance: menulist; }
 
 h2 {
   margin-top: 0; }
