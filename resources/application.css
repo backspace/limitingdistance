@@ -87,9 +87,11 @@ h1 {
     font-family: inherit;
     font-weight: inherit; }
   h1 select {
-    -webkit-appearance: none; }
+    -webkit-appearance: none;
+    -moz-appearance: none; }
     h1 select:hover {
-      -webkit-appearance: menulist; }
+      -webkit-appearance: menulist;
+      -moz-appearance: menulist; }
 
 h2 {
   margin-top: 0; }
