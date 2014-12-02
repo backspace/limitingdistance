@@ -11,8 +11,8 @@ $rounding: 15px
 @mixin background($color)
   background-color: $color
   border-color: $color - 30
-  -webkit-box-shadow: 3px 3px 4px #aaa
-  -moz-box-shadow: 3px 3px 4px #aaa
+
+  box-shadow: 3px 3px 4px #aaa
   .heading
     background-color: $color - 30
     text-shadow: 1px 1px 0px $color
@@ -160,18 +160,16 @@ input[type='radio']
     padding-left: 0
 
 .section
-  -moz-border-radius-topright: $rounding
-  -webkit-border-top-right-radius: $rounding
-  -moz-border-radius-topleft: $rounding
-  -webkit-border-top-left-radius: $rounding
-  -moz-border-radius-bottomleft: $rounding
-  -webkit-border-bottom-left-radius: $rounding
+  border-top-left-radius: $rounding
+  border-top-right-radius: $rounding
+  border-bottom-left-radius: $rounding
+
   width: $width
   margin-bottom: 10px
   background-color: $light
   border: 1px solid $dark
-  -webkit-box-shadow: 3px 3px 4px #aaa
-  -moz-box-shadow: 3px 3px 4px #aaa
+
+  box-shadow: 3px 3px 4px #aaa
 
 
   > *
@@ -181,10 +179,9 @@ input[type='radio']
     background-color: $dark
     display: block
     font-weight: bold
-    -moz-border-radius-topright: $rounding
-    -webkit-border-top-right-radius: $rounding
-    -moz-border-radius-topleft: $rounding
-    -webkit-border-top-left-radius: $rounding
+    border-top-left-radius: $rounding
+    border-top-right-radius: $rounding
+
     text-shadow: 1px 1px 2px rgb(57,182,233)
 
 
