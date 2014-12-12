@@ -1,6 +1,7 @@
 (function() {
   var FormWatcher,
-    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   FormWatcher = (function() {
     function FormWatcher(element, calculator, faceWatcher) {
@@ -11,18 +12,18 @@
       this.areaChange = __bind(this.areaChange, this);
       this.setRating = __bind(this.setRating, this);
       this.setCalculatedArea = __bind(this.setCalculatedArea, this);
-      this.nonTabChange = __bind(this.nonTabChange, this);
+      this.relevantChange = __bind(this.relevantChange, this);
       this.change = __bind(this.change, this);
       this.$ = __bind(this.$, this);
       this.unitChange = __bind(this.unitChange, this);
       this.add = __bind(this.add, this);
       this.remove = __bind(this.remove, this);
       this.$el = $(this.element);
-      this.$(".height, .width, .distance").keyup(this.change, this.nonTabChange);
+      this.$(".height, .width, .distance").keyup(this.change, this.relevantChange);
       $(".group1, .group2, .sprinklered, .unsprinklered").change(this.change);
       $(".imperial, .metric").change(this.unitChange);
       this.$el.find('input[step]').draggableNumber();
-      this.$(".area").keyup(this.areaChange, this.nonTabChange);
+      this.$(".area").keyup(this.areaChange, this.relevantChange);
       this.$(".remove").click(this.remove);
       this.$(".add").click(this.add);
       this.unitChange(false);
@@ -84,9 +85,13 @@
       }
     };
 
-    FormWatcher.prototype.nonTabChange = function(event) {
-      var _ref;
-      if ((_ref = event.which) !== 9 && _ref !== 16) {
+    FormWatcher.prototype.relevantChange = function(event) {
+      var deleteKeys, numberKeys, periodKey, relevantKeys, _ref;
+      numberKeys = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57];
+      deleteKeys = [46, 8];
+      periodKey = [190];
+      relevantKeys = numberKeys.concat(deleteKeys).concat(periodKey);
+      if ((_ref = event.which, __indexOf.call(relevantKeys, _ref) >= 0) || !event.which) {
         return event.data();
       }
     };
