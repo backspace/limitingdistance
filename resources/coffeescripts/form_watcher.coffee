@@ -2,7 +2,7 @@ class FormWatcher
   constructor: (@element, @calculator, @faceWatcher) ->
     @$el = $(@element)
 
-    @$(".height, .width, .distance").keyup(@change, @nonTabChange)
+    @$(".height, .width, .distance").keyup(@change, @relevantChange)
     # TODO now that common fields are extracted this is questionable
     $(".group1, .group2, .sprinklered, .unsprinklered").change(@change)
 
@@ -10,7 +10,7 @@ class FormWatcher
 
     @$el.find('input[step]').draggableNumber()
 
-    @$(".area").keyup(@areaChange, @nonTabChange)
+    @$(".area").keyup(@areaChange, @relevantChange)
 
     @$(".remove").click @remove
     @$(".add").click @add
@@ -58,8 +58,14 @@ class FormWatcher
       @$(".area").val percent.toFixed(1)
       @setRating()
 
-  nonTabChange: (event) =>
-    event.data() unless event.which in [9, 16]
+  relevantChange: (event) =>
+    numberKeys = [48..57]
+    deleteKeys = [46,8]
+    periodKey = [190]
+
+    relevantKeys = numberKeys.concat(deleteKeys).concat(periodKey)
+
+    event.data() if event.which in relevantKeys or !event.which
 
   setCalculatedArea: =>
     if @width() && @height()
