@@ -321,8 +321,8 @@ RatioTable.prototype.getPercent = function(width, height, limitingDistance)
   {
     var percent = this.ratios[(this.determineRatio(width, height))].getPercent(width, height, limitingDistance);
 
-    if (percent) return percent;
-    else return 100;
+    if (isNaN(percent)) return 100;
+    else return percent;
   };
 
 RatioTable.prototype.getLD = function(width, height, percent)
