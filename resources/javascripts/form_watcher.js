@@ -21,6 +21,7 @@
       this.$(".height, .width, .distance").keyup(this.change, this.nonTabChange);
       $(".group1, .group2, .sprinklered, .unsprinklered").change(this.change);
       $(".imperial, .metric").change(this.unitChange);
+      this.$el.find('input[step]').draggableNumber();
       this.$(".area").keyup(this.areaChange, this.nonTabChange);
       this.$(".remove").click(this.remove);
       this.$(".add").click(this.add);

@@ -6,6 +6,7 @@
 
     %script{:src => "resources/javascripts/jquery-1.11.1.min.js", :type => "text/javascript"}
     %script{:src => "resources/javascripts/jquery.string.1.1.0-min.js", :type => "text/javascript"}
+    %script(src='resources/javascripts/jquery.draggableNumber.js' type='text/javascript')
     %script{:src => "resources/javascripts/limiting_distance_calculator.js", :type => "text/javascript"}
     %script{:src => "resources/javascripts/face_watcher.js", :type => "text/javascript"}
     %script{:src => "resources/javascripts/form_watcher.js", :type => "text/javascript"}
@@ -74,11 +75,11 @@
               .heading Dimensions
               %div
                 .field
-                  %input.height{:name => "height", :type => "text", :size => field_width}/
+                  %input.height{:name => "height", :type => "text", :size => field_width, :min => 0, :step => 1}/
                   .units>
                   %label{:for => "height"} Height
                 .field
-                  %input.width{:name => "width", :type => "text", :size => field_width}/
+                  %input.width{:name => "width", :type => "text", :size => field_width, :min => 0, :step => 1}/
                   .units>
                   %label{:for => "width"} Width
                 .field.calculated-area
@@ -86,13 +87,13 @@
                   .units.squared>
                   %label Building face area
                 .field
-                  %input.distance{:name => "distance", :type => "text", :size => field_width}/
+                  %input.distance{:name => "distance", :type => "text", :size => field_width, :min => 0, :step => 1}/
                   .units>
                   %label{:for => "distance"} Limiting distance
             .section
               .heading Unprotected opening area
               %div
-                %input.area{:name => "area", :type => "text", :size => field_width}/
+                %input.area{:name => "area", :type => "text", :size => field_width, :min => 0, :max => 100, :step => 1}/
                 %span><
                   \%
                 .units.squared

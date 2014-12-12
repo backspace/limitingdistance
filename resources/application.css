@@ -169,3 +169,11 @@ footer {
   margin-bottom: 2em;
   clear: both;
   text-align: center; }
+
+.draggable {
+  cursor: ns-resize; }
+
+body.draglessness {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none; }

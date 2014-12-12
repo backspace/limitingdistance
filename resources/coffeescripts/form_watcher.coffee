@@ -8,6 +8,8 @@ class FormWatcher
 
     $(".imperial, .metric").change(@unitChange)
 
+    @$el.find('input[step]').draggableNumber()
+
     @$(".area").keyup(@areaChange, @nonTabChange)
 
     @$(".remove").click @remove
