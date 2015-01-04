@@ -1,3 +1,234 @@
-<h2 id="title">Welcome to Ember.js</h2>
-
-{{outlet}}
+<div class='common'>
+  <a href='http://arccadd.com'>
+    <img class='logo' src='/assets/images/logo.png'>
+  </a>
+  <h1>
+    <select>
+      <option>NBC 3.2.3.1</option>
+    </select>
+  </h1>
+  <h2>
+    Limiting Distance
+  </h2>
+  <h3>
+    <input class='title' placeholder='Project Title'>
+  </h3>
+  <form>
+    <div class='section'>
+      <div class='heading'>Units</div>
+      <div>
+        <div class='field'>
+          <label>
+            <input checked='' class='metric' name='units' type='radio' value='metric'>
+            Metric
+          </label>
+        </div>
+        <div class='field'>
+          <label>
+            <input class='imperial' name='units' type='radio' value='imperial'>
+            Imperial
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class='section'>
+      <div class='heading'>Occupancy group</div>
+      <div>
+        <div class='field'>
+          <label>
+            <input checked='' class='group1' name='group' type='radio' value='1'>
+            A, B, C, D, F3
+          </label>
+        </div>
+        <div class='field'>
+          <label>
+            <input class='group2' name='group' type='radio' value='2'>
+            E, F1, F2
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class='section'>
+      <div class='heading'>Fire protection</div>
+      <div>
+        <div class='field'>
+          <label>
+            <input checked='' class='unsprinklered' name='sprinklers' type='radio' value='unsprinklered'>
+            Unsprinklered
+          </label>
+        </div>
+        <div class='field'>
+          <label>
+            <input class='sprinklered' name='sprinklers' type='radio' value='sprinklered'>
+            Sprinklered
+          </label>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class='faces faces-4'>
+  <div class='face face-1'>
+    <div class='face-label'>
+      <h3>
+        <input placeholder='Building Face 1'>
+      </h3>
+      <div class='controls'>
+        <span class='add'>&#8853;</span>
+        <span class='remove'>&#8854;</span>
+      </div>
+      <div class='section'>
+        <div class='heading'>Dimensions</div>
+        <div>
+          <div class='field'>
+            <input class='height' min='0' name='height' size='6' step='1' type='text'><div class='units'></div><label for='height'>Height</label>
+          </div>
+          <div class='field'>
+            <input class='width' min='0' name='width' size='6' step='1' type='text'><div class='units'></div><label for='width'>Width</label>
+          </div>
+          <div class='field calculated-area'>
+            <input size='6' tabindex='-1' type='text'><div class='units squared'></div><label>Building face area</label>
+          </div>
+          <div class='field'>
+            <input class='distance' min='0' name='distance' size='6' step='1' type='text'><div class='units'></div><label for='distance'>Limiting distance</label>
+          </div>
+        </div>
+      </div>
+      <div class='section'>
+        <div class='heading'>Unprotected opening area</div>
+        <div>
+          <input class='area' max='100' min='0' name='area' size='6' step='1' type='text'><span>%</span><div class='units squared'></div>
+        </div>
+      </div>
+      <div class='section'>
+        <div class='heading'>Exposed building face</div>
+        <div>
+          <div class='rating'>&nbsp;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='face face-2'>
+    <div class='face-label'>
+      <h3>
+        <input placeholder='Building Face 2'>
+      </h3>
+      <div class='controls'>
+        <span class='add'>&#8853;</span>
+        <span class='remove'>&#8854;</span>
+      </div>
+      <div class='section'>
+        <div class='heading'>Dimensions</div>
+        <div>
+          <div class='field'>
+            <input class='height' min='0' name='height' size='6' step='1' type='text'><div class='units'></div><label for='height'>Height</label>
+          </div>
+          <div class='field'>
+            <input class='width' min='0' name='width' size='6' step='1' type='text'><div class='units'></div><label for='width'>Width</label>
+          </div>
+          <div class='field calculated-area'>
+            <input size='6' tabindex='-1' type='text'><div class='units squared'></div><label>Building face area</label>
+          </div>
+          <div class='field'>
+            <input class='distance' min='0' name='distance' size='6' step='1' type='text'><div class='units'></div><label for='distance'>Limiting distance</label>
+          </div>
+        </div>
+      </div>
+      <div class='section'>
+        <div class='heading'>Unprotected opening area</div>
+        <div>
+          <input class='area' max='100' min='0' name='area' size='6' step='1' type='text'><span>%</span><div class='units squared'></div>
+        </div>
+      </div>
+      <div class='section'>
+        <div class='heading'>Exposed building face</div>
+        <div>
+          <div class='rating'>&nbsp;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='face face-3'>
+    <div class='face-label'>
+      <h3>
+        <input placeholder='Building Face 3'>
+      </h3>
+      <div class='controls'>
+        <span class='add'>&#8853;</span>
+        <span class='remove'>&#8854;</span>
+      </div>
+      <div class='section'>
+        <div class='heading'>Dimensions</div>
+        <div>
+          <div class='field'>
+            <input class='height' min='0' name='height' size='6' step='1' type='text'><div class='units'></div><label for='height'>Height</label>
+          </div>
+          <div class='field'>
+            <input class='width' min='0' name='width' size='6' step='1' type='text'><div class='units'></div><label for='width'>Width</label>
+          </div>
+          <div class='field calculated-area'>
+            <input size='6' tabindex='-1' type='text'><div class='units squared'></div><label>Building face area</label>
+          </div>
+          <div class='field'>
+            <input class='distance' min='0' name='distance' size='6' step='1' type='text'><div class='units'></div><label for='distance'>Limiting distance</label>
+          </div>
+        </div>
+      </div>
+      <div class='section'>
+        <div class='heading'>Unprotected opening area</div>
+        <div>
+          <input class='area' max='100' min='0' name='area' size='6' step='1' type='text'><span>%</span><div class='units squared'></div>
+        </div>
+      </div>
+      <div class='section'>
+        <div class='heading'>Exposed building face</div>
+        <div>
+          <div class='rating'>&nbsp;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='face face-4'>
+    <div class='face-label'>
+      <h3>
+        <input placeholder='Building Face 4'>
+      </h3>
+      <div class='controls'>
+        <span class='add'>&#8853;</span>
+        <span class='remove'>&#8854;</span>
+      </div>
+      <div class='section'>
+        <div class='heading'>Dimensions</div>
+        <div>
+          <div class='field'>
+            <input class='height' min='0' name='height' size='6' step='1' type='text'><div class='units'></div><label for='height'>Height</label>
+          </div>
+          <div class='field'>
+            <input class='width' min='0' name='width' size='6' step='1' type='text'><div class='units'></div><label for='width'>Width</label>
+          </div>
+          <div class='field calculated-area'>
+            <input size='6' tabindex='-1' type='text'><div class='units squared'></div><label>Building face area</label>
+          </div>
+          <div class='field'>
+            <input class='distance' min='0' name='distance' size='6' step='1' type='text'><div class='units'></div><label for='distance'>Limiting distance</label>
+          </div>
+        </div>
+      </div>
+      <div class='section'>
+        <div class='heading'>Unprotected opening area</div>
+        <div>
+          <input class='area' max='100' min='0' name='area' size='6' step='1' type='text'><span>%</span><div class='units squared'></div>
+        </div>
+      </div>
+      <div class='section'>
+        <div class='heading'>Exposed building face</div>
+        <div>
+          <div class='rating'>&nbsp;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  Developed by <a href='http://github.com/backspace'>Buck Doyle</a> for <a href='http://arccadd.com'>Arccadd Architecture Inc</a>.
+</footer>

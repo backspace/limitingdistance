@@ -1,9 +1,0 @@
-guard :coffeescript, input: "coffeescripts", output: "javascripts"
-
-guard :haml, output: "../" do
-  watch(/^.+(\.html\.haml)$/)
-end
-
-guard :sass, output: ".", all_on_start: true, extension: '.css' do
-  watch(/^.+(\.css\.sass)$/)
-end
