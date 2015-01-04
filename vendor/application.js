@@ -13,7 +13,7 @@ Array.prototype.uniq = function() {
             arr.push(this[i]);
         }
     }
-    return arr; 
+    return arr;
 }
 
 Array.prototype.first = function(){
@@ -140,7 +140,7 @@ function test() {
 
 var FTM = 0.3048;
 
-$(loaded);
+$(window).load(loaded);
 
 var Table = function(lds) {
   this.areaToPercents = {};
@@ -330,13 +330,13 @@ RatioTable.prototype.getLD = function(width, height, percent)
     return this.ratios[(this.determineRatio(width, height))].getLD(width, height, percent);
   };
 
-RatioTable.prototype.area = function(area, lows, mids, highs) 
+RatioTable.prototype.area = function(area, lows, mids, highs)
   {
     this.lows.area(area, lows);
     this.mids.area(area, mids);
     this.highs.area(area, highs);
   };
 
-RatioTable.LOW = '0'; 
-RatioTable.MID = '1'; 
+RatioTable.LOW = '0';
+RatioTable.MID = '1';
 RatioTable.HIGH = '2';
