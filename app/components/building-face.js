@@ -1,25 +1,60 @@
 import Ember from 'ember';
 
+var FTM = 0.3048;
+
 export default Ember.Component.extend({
   width: function(key, value) {
     if (arguments.length > 1) {
-      this.set('face.width', parseFloat(value));
+      this.set('face.width', this.convertToMetric(parseFloat(value)));
     }
 
-    return this.get('face.width');
+    return this.convertFromMetric(this.get('face.width'));
   }.property('face.width'),
 
   height: function(key, value) {
     if (arguments.length > 1) {
-      this.set('face.height', parseFloat(value));
+      this.set('face.height', this.convertToMetric(parseFloat(value)));
     }
 
-    return this.get('face.height');
+    return this.convertFromMetric(this.get('face.height'));
   }.property('face.height'),
 
-  area: Ember.computed.alias('face.area'),
+  convertToMetric: function(value) {
+    if (this.get('isImperial')) {
+      return value*FTM;
+    }
+    else
+    {
+      return value;
+    }
+  },
+
+  convertFromMetric: function(value) {
+    if (this.get('isImperial')) {
+      return value/FTM;
+    }
+    else
+    {
+      return value;
+    }
+  },
+
+  area: function() {
+    var width = this.get('width');
+    var height = this.get('height');
+
+    if (width && height) {
+      return width*height;
+    }
+    else
+    {
+      return undefined;
+    }
+  }.property('width', 'height'),
 
   project: Ember.computed.alias('face.project'),
+
+  isImperial: Ember.computed.alias('project.isImperial'),
 
   units: function() {
     if (this.get('project.isImperial')) {
