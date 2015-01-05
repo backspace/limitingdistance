@@ -56,8 +56,6 @@
           }
         });
       }
-      unit = this.imperial() ? "ft" : "m";
-      return this.$(".units").html(unit);
     };
 
     FormWatcher.prototype.ready = function() {
