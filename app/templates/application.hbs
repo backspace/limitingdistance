@@ -10,62 +10,7 @@
   <h2>
     Limiting Distance
   </h2>
-  <h3>
-    <input class='title' placeholder='Project Title'>
-  </h3>
-  <form>
-    <div class='section'>
-      <div class='heading'>Units</div>
-      <div>
-        <div class='field'>
-          <label>
-            <input checked='' class='metric' name='units' type='radio' value='metric'>
-            Metric
-          </label>
-        </div>
-        <div class='field'>
-          <label>
-            <input class='imperial' name='units' type='radio' value='imperial'>
-            Imperial
-          </label>
-        </div>
-      </div>
-    </div>
-    <div class='section'>
-      <div class='heading'>Occupancy group</div>
-      <div>
-        <div class='field'>
-          <label>
-            <input checked='' class='group1' name='group' type='radio' value='1'>
-            A, B, C, D, F3
-          </label>
-        </div>
-        <div class='field'>
-          <label>
-            <input class='group2' name='group' type='radio' value='2'>
-            E, F1, F2
-          </label>
-        </div>
-      </div>
-    </div>
-    <div class='section'>
-      <div class='heading'>Fire protection</div>
-      <div>
-        <div class='field'>
-          <label>
-            <input checked='' class='unsprinklered' name='sprinklers' type='radio' value='unsprinklered'>
-            Unsprinklered
-          </label>
-        </div>
-        <div class='field'>
-          <label>
-            <input class='sprinklered' name='sprinklers' type='radio' value='sprinklered'>
-            Sprinklered
-          </label>
-        </div>
-      </div>
-    </div>
-  </form>
+  {{project-manager project=project}}
 </div>
 <div {{bind-attr class="face-count :faces"}}>
   {{#each face in faces}}
