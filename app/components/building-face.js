@@ -19,6 +19,17 @@ export default Ember.Component.extend({
 
   area: Ember.computed.alias('face.area'),
 
+  project: Ember.computed.alias('face.project'),
+
+  units: function() {
+    if (this.get('project.isImperial')) {
+      return 'ft';
+    }
+    else {
+      return 'm';
+    }
+  }.property('project.isImperial'),
+
   indexClass: function() {
     return `face-${this.get('face.index')}`;
   }.property('face.index'),
