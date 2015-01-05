@@ -28,6 +28,6 @@ export default Ember.Component.extend({
   }.property('face.index'),
 
   watchForm: function() {
-    new window.FormWatcher(this.$(), new window.LimitingDistanceCalculator(window.tables));
+    new window.FormWatcher(this.$(), new window.LimitingDistanceCalculator(window.tables), this.get('face.project'));
   }.on('didInsertElement')
 });

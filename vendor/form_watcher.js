@@ -4,11 +4,10 @@
     __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   FormWatcher = (function() {
-    function FormWatcher(element, calculator, faceWatcher) {
+    function FormWatcher(element, calculator, project) {
       this.element = element;
       this.calculator = calculator;
-      this.faceWatcher = faceWatcher;
-      this.imperial = __bind(this.imperial, this);
+      this.project = project;
       this.areaChange = __bind(this.areaChange, this);
       this.setRating = __bind(this.setRating, this);
       this.relevantChange = __bind(this.relevantChange, this);
@@ -19,8 +18,9 @@
       this.remove = __bind(this.remove, this);
       this.$el = $(this.element);
       this.$(".height, .width, .distance").keyup(this.change, this.relevantChange);
-      $(".group1, .group2, .sprinklered, .unsprinklered").change(this.change);
-      $(".imperial, .metric").change(this.unitChange);
+      this.project.addObserver('occupancyGroup', this.change);
+      this.project.addObserver('fireProtection', this.change);
+      this.project.addObserver('units', this.unitChange);
       this.$el.find('input[step]').draggableNumber();
       this.$(".area").keyup(this.areaChange, this.relevantChange);
       this.$(".remove").click(this.remove);
@@ -38,7 +38,7 @@
     };
 
     FormWatcher.prototype.unitFactor = function() {
-      if ($(".imperial").prop('checked')) {
+      if (this.project.get('isImperial')) {
         return 1 / FTM;
       } else {
         return FTM;
@@ -72,8 +72,8 @@
       var percent;
       if (this.ready()) {
         percent = this.calculator.getPercent({
-          sprinklered: this.sprinklers(),
-          group: this.group(),
+          sprinklered: this.project.get('isSprinklered'),
+          group: this.project.get('occupancyGroup'),
           width: this.width(),
           height: this.height(),
           limiting_distance: this.distance()
@@ -135,7 +135,7 @@
     };
 
     FormWatcher.prototype.imperial = function() {
-      return $(".imperial").prop("checked");
+      return this.project.get('isImperial');
     };
 
     FormWatcher.prototype.imperialMultiplier = function() {
@@ -155,7 +155,7 @@
     };
 
     FormWatcher.prototype.sprinklers = function() {
-      return $(".sprinklered").prop("checked");
+      return this.project.get('isSprinklered');
     };
 
     FormWatcher.prototype.distance = function() {
@@ -167,11 +167,7 @@
     };
 
     FormWatcher.prototype.group = function() {
-      if ($(".group1").prop("checked")) {
-        return $(".group1").val();
-      } else {
-        return $(".group2").val();
-      }
+      return this.project.get('occupancyGroup');
     };
 
     return FormWatcher;

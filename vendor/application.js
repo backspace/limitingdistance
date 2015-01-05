@@ -53,12 +53,6 @@ Array.prototype.include = function(obj) {
 function loaded()
 {
   $(".title").focus();
-  faceWatcher = new FaceWatcher();
-  calculator = new LimitingDistanceCalculator(tables);
-
-  for (var i = 1; i <= 4; i++) {
-    new FormWatcher($(".face-" + i), calculator, faceWatcher);
-  }
 }
 
 function test() {
