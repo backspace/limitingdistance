@@ -6,16 +6,14 @@
       <div class='heading'>Units</div>
       <div>
         <div class='field'>
-          <label>
-            <input checked='' class='metric' name='units' type='radio' value='metric'>
+          {{#radio-button name="units" value="metric" groupValue=project.units class="metric"}}
             Metric
-          </label>
+          {{/radio-button}}
         </div>
         <div class='field'>
-          <label>
-            <input class='imperial' name='units' type='radio' value='imperial'>
+          {{#radio-button name="units" value="imperial" groupValue=project.units class="imperial"}}
             Imperial
-          </label>
+          {{/radio-button}}
         </div>
       </div>
     </div>
@@ -23,16 +21,14 @@
       <div class='heading'>Occupancy group</div>
       <div>
         <div class='field'>
-          <label>
-            <input checked='' class='group1' name='group' type='radio' value='1'>
+          {{#radio-button name="group" value="1" groupValue=project.occupancyGroup class="group1"}}
             A, B, C, D, F3
-          </label>
+          {{/radio-button}}
         </div>
         <div class='field'>
-          <label>
-            <input class='group2' name='group' type='radio' value='2'>
+          {{#radio-button name="group" value="2" groupValue=project.occupancyGroup class="group2"}}
             E, F1, F2
-          </label>
+          {{/radio-button}}
         </div>
       </div>
     </div>
@@ -40,16 +36,14 @@
       <div class='heading'>Fire protection</div>
       <div>
         <div class='field'>
-          <label>
-            <input checked='' class='unsprinklered' name='sprinklers' type='radio' value='unsprinklered'>
+          {{#radio-button name="sprinklers" value="unsprinklered" groupValue=project.fireProtection class="unsprinklered"}}
             Unsprinklered
-          </label>
+          {{/radio-button}}
         </div>
         <div class='field'>
-          <label>
-            <input class='sprinklered' name='sprinklers' type='radio' value='sprinklered'>
+          {{#radio-button name="sprinklers" value="sprinklered" groupValue=project.fireProtection class="sprinklered"}}
             Sprinklered
-          </label>
+          {{/radio-button}}
         </div>
       </div>
     </div>
