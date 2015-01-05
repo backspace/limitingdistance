@@ -11,7 +11,6 @@
       this.imperial = __bind(this.imperial, this);
       this.areaChange = __bind(this.areaChange, this);
       this.setRating = __bind(this.setRating, this);
-      this.setCalculatedArea = __bind(this.setCalculatedArea, this);
       this.relevantChange = __bind(this.relevantChange, this);
       this.change = __bind(this.change, this);
       this.$ = __bind(this.$, this);
@@ -71,7 +70,6 @@
 
     FormWatcher.prototype.change = function() {
       var percent;
-      this.setCalculatedArea();
       if (this.ready()) {
         percent = this.calculator.getPercent({
           sprinklered: this.sprinklers(),
@@ -93,21 +91,6 @@
       relevantKeys = numberKeys.concat(deleteKeys).concat(periodKey);
       if ((_ref = event.which, __indexOf.call(relevantKeys, _ref) >= 0) || !event.which) {
         return event.data();
-      }
-    };
-
-    FormWatcher.prototype.setCalculatedArea = function() {
-      var area, h, w;
-      if (this.width() && this.height()) {
-        w = parseFloat(this.$(".width").val());
-        h = parseFloat(this.$(".height").val());
-        area = w * h;
-        if (area) {
-          area = area.round(4);
-        }
-        return this.$(".calculated-area input").val(area);
-      } else {
-        return this.$(".calculated-area input").val("");
       }
     };
 
