@@ -44,6 +44,30 @@ test('displays the correct calculation result for the first group', function() {
   });
 });
 
+test('supports entering the unprotected area to calculate the limiting distance', function() {
+  visit('/');
+
+  // FIXME currently required to activate observers
+  andThen(function() {
+    window.loaded();
+  });
+
+  click('label:contains(Metric) input');
+  click('label:contains(F3) input');
+  click('label:contains(Unsprinklered) input');
+
+  fillIn('.face-1 input[name=height]', 5);
+  fillIn('.face-1 input[name=width]', 5);
+  fillIn('.face-1 input[name=area]', 7);
+
+  andThen(function() {
+    // FIXME currently required to trigger area calculation
+    find('.face-1 input[name=area]').trigger('keyup');
+    var limitingDistance = find('.face-1 input[name=distance]').val();
+    ok(limitingDistance === '1.2');
+  });
+});
+
 test('displays the correct calculation result for the second group', function() {
   visit('/');
 
