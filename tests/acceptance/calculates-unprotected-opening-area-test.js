@@ -12,6 +12,10 @@ module('Acceptance: Calculates unprotected opening area', {
   }
 });
 
+function expectRating(text) {
+  equal(find(`.rating:contains("${text}")`).length, 1, `should have rating ${text}`);
+}
+
 test('displays the correct calculation result for the first group', function() {
   visit('/');
 
@@ -33,6 +37,10 @@ test('displays the correct calculation result for the first group', function() {
     find('.face-1 input[name=width]').trigger('keyup');
     var unprotectedOpeningArea = find('.face-1 input[name=area]').val();
     ok(unprotectedOpeningArea === '7.0');
+
+    expectRating('Non-combustible construction');
+    expectRating('Non-combustible cladding');
+    expectRating('1h fire-resistance rating');
   });
 });
 
@@ -57,6 +65,10 @@ test('displays the correct calculation result for the second group', function() 
     find('.face-1 input[name=width]').trigger('keyup');
     var unprotectedOpeningArea = find('.face-1 input[name=area]').val();
     ok(unprotectedOpeningArea === '16.0');
+
+    expectRating('Combustible construction');
+    expectRating('Non-combustible cladding');
+    expectRating('2h fire-resistance rating');
   });
 });
 
@@ -82,5 +94,9 @@ test('displays the correct imperial calculation result', function() {
     // return pauseTest();
     var unprotectedOpeningArea = find('.face-1 input[name=area]').val();
     ok(unprotectedOpeningArea === '43.0');
+
+    expectRating('Combustible construction');
+    expectRating('Combustible cladding');
+    expectRating('45min fire-resistance rating');
   });
 });
