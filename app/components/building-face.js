@@ -19,6 +19,14 @@ export default Ember.Component.extend({
     return this.convertFromMetric(this.get('face.height'));
   }.property('face.height'),
 
+  distance: function(key, value) {
+    if (arguments.length > 1) {
+      this.set('face.distance', this.convertToMetric(parseFloat(value)));
+    }
+
+    return this.convertFromMetric(this.get('face.distance'));
+  }.property('face.distance'),
+
   convertToMetric: function(value) {
     if (this.get('isImperial')) {
       return value*FTM;
