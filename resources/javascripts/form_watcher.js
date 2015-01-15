@@ -157,7 +157,7 @@
 
     FormWatcher.prototype.imperialMultiplier = function() {
       if (this.imperial()) {
-        return 1 / FTM;
+        return FTM;
       } else {
         return 1;
       }

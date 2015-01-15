@@ -118,7 +118,7 @@ class FormWatcher
     $(".imperial").prop "checked"
 
   imperialMultiplier: ->
-    if @imperial() then 1/FTM else 1
+    if @imperial() then FTM else 1
 
   height: ->
     @$(".height").val()*@imperialMultiplier()
