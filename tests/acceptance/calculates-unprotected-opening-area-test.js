@@ -115,7 +115,6 @@ test('displays the correct imperial calculation result', function() {
   andThen(function() {
     // FIXME currently required to trigger area calculation
     find('.face-1 input[name=width]').trigger('keyup');
-    // return pauseTest();
     var unprotectedOpeningArea = find('.face-1 input[name=area]').val();
     equal(unprotectedOpeningArea, '10.8', 'should have unprotected opening area of 10.8%');
 
