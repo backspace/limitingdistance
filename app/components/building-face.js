@@ -27,6 +27,64 @@ export default Ember.Component.extend({
     return this.convertFromMetric(this.get('face.distance'));
   }.property('face.distance', 'isImperial'),
 
+  unprotectedOpeningArea: Ember.computed.alias('face.unprotectedOpeningArea'),
+
+  constructionRating: function() {
+    var combustibleConstruction = this.get('face.combustibleConstruction');
+
+    if (typeof combustibleConstruction === 'undefined') {
+      return undefined;
+    }
+    else if (combustibleConstruction) {
+      return 'Combustible construction';
+    }
+    else {
+      return 'Non-combustible construction';
+    }
+  }.property('face.combustibleConstruction'),
+
+  claddingRating: function() {
+    var combustibleCladding = this.get('face.combustibleCladding');
+
+    if (typeof combustibleCladding === 'undefined') {
+      return undefined;
+    }
+    else if (combustibleCladding) {
+      return 'Combustible cladding';
+    }
+    else {
+      return 'Non-combustible cladding';
+    }
+  }.property('face.combustibleCladding'),
+
+  fireResistanceRating: function() {
+    var minutes = this.get('face.fireResistanceMinutes');
+
+    if (typeof minutes === 'undefined') {
+      return undefined;
+    }
+    else if (minutes < 60) {
+      return `${minutes}min fire-resistance rating`;
+    }
+    else {
+      return `${minutes/60}h fire-resistance rating`;
+    }
+  }.property('face.fireResistanceMinutes'),
+
+  ratings: function() {
+    var construction = this.get('constructionRating');
+    var cladding = this.get('claddingRating');
+    var fireResistance = this.get('fireResistanceRating');
+
+    var ratings = [];
+
+    if (construction) { ratings.push(construction); }
+    if (cladding) { ratings.push(cladding); }
+    if (fireResistance) { ratings.push(fireResistance); }
+
+    return ratings;
+  }.property('constructionRating', 'claddingRating', 'fireResistanceRating'),
+
   convertToMetric: function(value) {
     if (this.get('isImperial')) {
       return value*FTM;
