@@ -9,7 +9,7 @@ export default Ember.Component.extend({
     }
 
     return this.convertFromMetric(this.get('face.width'));
-  }.property('face.width'),
+  }.property('face.width', 'isImperial'),
 
   height: function(key, value) {
     if (arguments.length > 1) {
@@ -17,7 +17,7 @@ export default Ember.Component.extend({
     }
 
     return this.convertFromMetric(this.get('face.height'));
-  }.property('face.height'),
+  }.property('face.height', 'isImperial'),
 
   distance: function(key, value) {
     if (arguments.length > 1) {
@@ -25,7 +25,7 @@ export default Ember.Component.extend({
     }
 
     return this.convertFromMetric(this.get('face.distance'));
-  }.property('face.distance'),
+  }.property('face.distance', 'isImperial'),
 
   convertToMetric: function(value) {
     if (this.get('isImperial')) {

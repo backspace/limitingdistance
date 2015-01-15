@@ -14,19 +14,16 @@
       this.relevantChange = __bind(this.relevantChange, this);
       this.change = __bind(this.change, this);
       this.$ = __bind(this.$, this);
-      this.unitChange = __bind(this.unitChange, this);
       this.add = __bind(this.add, this);
       this.remove = __bind(this.remove, this);
       this.$el = $(this.element);
       this.$(".height, .width, .distance").keyup(this.change, this.relevantChange);
       this.project.addObserver('occupancyGroup', this.change);
       this.project.addObserver('fireProtection', this.change);
-      this.project.addObserver('units', this.unitChange);
       this.$el.find('input[step]').draggableNumber();
       this.$(".area").keyup(this.areaChange, this.relevantChange);
       this.$(".remove").click(this.remove);
       this.$(".add").click(this.add);
-      this.unitChange(false);
     }
 
     FormWatcher.prototype.remove = function() {
@@ -43,19 +40,6 @@
         return 1 / FTM;
       } else {
         return FTM;
-      }
-    };
-
-    FormWatcher.prototype.unitChange = function(convert) {
-      var factor, unit;
-      factor = this.unitFactor();
-      if (convert) {
-        this.$(".width, .height, .distance").each(function(index, field) {
-          field = $(field);
-          if (field.val()) {
-            return field.val((field.val() * factor).round(4));
-          }
-        });
       }
     };
 
