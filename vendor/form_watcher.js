@@ -4,9 +4,10 @@
     __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   FormWatcher = (function() {
-    function FormWatcher(element, calculator, project) {
+    function FormWatcher(element, calculator, face, project) {
       this.element = element;
       this.calculator = calculator;
+      this.face = face;
       this.project = project;
       this.areaChange = __bind(this.areaChange, this);
       this.setRating = __bind(this.setRating, this);
@@ -145,11 +146,11 @@
     };
 
     FormWatcher.prototype.height = function() {
-      return this.$(".height").val() * this.imperialMultiplier();
+      return this.face.get('height');
     };
 
     FormWatcher.prototype.width = function() {
-      return this.$(".width").val() * this.imperialMultiplier();
+      return this.face.get('width');
     };
 
     FormWatcher.prototype.sprinklers = function() {
@@ -157,7 +158,7 @@
     };
 
     FormWatcher.prototype.distance = function() {
-      return this.$(".distance").val() * this.imperialMultiplier();
+      return this.face.get('distance');
     };
 
     FormWatcher.prototype.area = function() {
