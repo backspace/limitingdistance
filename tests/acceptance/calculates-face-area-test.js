@@ -37,3 +37,24 @@ test('calculates imperial area', function() {
     equal(calculatedArea, '45', 'should equal 45ft²');
   });
 });
+
+test('converts when the units change', function() {
+  visit('/');
+
+  click('label:contains(Metric) input');
+
+  fillIn('.face-1 input[name=height]', 3048);
+  fillIn('.face-1 input[name=width]', 6096);
+
+  andThen(function() {
+    var calculatedArea = find('.face-1 .calculated-area input').val();
+    equal(calculatedArea, 3048*6096 + '', 'should equal width*height');
+  });
+
+  click('label:contains(Imperial) input');
+
+  andThen(function() {
+    var calculatedArea = find('.face-1 .calculated-area input').val();
+    equal(calculatedArea, '200000000', 'should equal 200000000');
+  });
+});
