@@ -117,10 +117,10 @@ test('displays the correct imperial calculation result', function() {
     find('.face-1 input[name=width]').trigger('keyup');
     // return pauseTest();
     var unprotectedOpeningArea = find('.face-1 input[name=area]').val();
-    equal(unprotectedOpeningArea, '43.0', 'should have unprotected opening area of 43.0%');
+    equal(unprotectedOpeningArea, '10.8', 'should have unprotected opening area of 10.8%');
 
     expectRating('Combustible construction');
-    expectRating('Combustible cladding');
-    expectRating('45min fire-resistance rating');
+    expectRating('Non-combustible cladding');
+    expectRating('1h fire-resistance rating');
   });
 });
