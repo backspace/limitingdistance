@@ -38,7 +38,10 @@ export default Ember.Component.extend({
   },
 
   convertFromMetric: function(value) {
-    if (this.get('isImperial')) {
+    if (!value) {
+      return undefined;
+    }
+    else if (this.get('isImperial')) {
       return value/FTM;
     }
     else
