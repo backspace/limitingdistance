@@ -27,6 +27,8 @@ export default Ember.Component.extend({
     return this.convertFromMetric(this.get('face.distance'));
   }.property('face.distance', 'isImperial'),
 
+  unprotectedOpeningArea: Ember.computed.alias('face.unprotectedOpeningArea'),
+
   convertToMetric: function(value) {
     if (this.get('isImperial')) {
       return value*FTM;
