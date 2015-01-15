@@ -50,11 +50,6 @@ Array.prototype.include = function(obj) {
   return false;
 }
 
-function loaded()
-{
-  $(".title").focus();
-}
-
 function test() {
   // sprinklered, group, width, height, limiting_distance
 
@@ -133,8 +128,6 @@ function test() {
 }
 
 var FTM = 0.3048;
-
-$(window).load(loaded);
 
 var Table = function(lds) {
   this.areaToPercents = {};
