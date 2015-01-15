@@ -19,11 +19,6 @@ function expectRating(text) {
 test('displays the correct calculation result for the first group', function() {
   visit('/');
 
-  // FIXME currently required to activate observers
-  andThen(function() {
-    window.loaded();
-  });
-
   click('label:contains(Metric) input');
   click('label:contains(F3) input');
   click('label:contains(Unsprinklered) input');
@@ -47,11 +42,6 @@ test('displays the correct calculation result for the first group', function() {
 test('displays the correct calculation result for the second group', function() {
   visit('/');
 
-  // FIXME currently required to activate observers
-  andThen(function() {
-    window.loaded();
-  });
-
   click('label:contains(Metric) input');
   click('label:contains(F1) input');
   click('label:contains(Unsprinklered) input');
@@ -74,11 +64,6 @@ test('displays the correct calculation result for the second group', function() 
 
 test('displays the correct imperial calculation result', function() {
   visit('/');
-
-  // FIXME currently required to activate observers
-  andThen(function() {
-    window.loaded();
-  });
 
   click('label:contains(Imperial) input');
   click('label:contains(F3) input');

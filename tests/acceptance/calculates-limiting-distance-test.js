@@ -15,11 +15,6 @@ module('Acceptance: Calculates limiting distance', {
 test('supports entering the unprotected area to calculate the limiting distance', function() {
   visit('/');
 
-  // FIXME currently required to activate observers
-  andThen(function() {
-    window.loaded();
-  });
-
   click('label:contains(Metric) input');
   click('label:contains(F3) input');
   click('label:contains(Unsprinklered) input');
