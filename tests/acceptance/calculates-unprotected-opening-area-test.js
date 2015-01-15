@@ -36,7 +36,7 @@ test('displays the correct calculation result for the first group', function() {
     // FIXME currently required to trigger area calculation
     find('.face-1 input[name=width]').trigger('keyup');
     var unprotectedOpeningArea = find('.face-1 input[name=area]').val();
-    ok(unprotectedOpeningArea === '7.0');
+    equal(unprotectedOpeningArea, '7.0', 'should have unprotected opening area of 7.0%');
 
     expectRating('Non-combustible construction');
     expectRating('Non-combustible cladding');
@@ -64,7 +64,7 @@ test('supports entering the unprotected area to calculate the limiting distance'
     // FIXME currently required to trigger area calculation
     find('.face-1 input[name=area]').trigger('keyup');
     var limitingDistance = find('.face-1 input[name=distance]').val();
-    ok(limitingDistance === '1.2');
+    equal(limitingDistance, '1.2', 'should have limiting distance of 1.2');
   });
 });
 
@@ -88,7 +88,7 @@ test('displays the correct calculation result for the second group', function() 
     // FIXME currently required to trigger area calculation
     find('.face-1 input[name=width]').trigger('keyup');
     var unprotectedOpeningArea = find('.face-1 input[name=area]').val();
-    ok(unprotectedOpeningArea === '16.0');
+    equal(unprotectedOpeningArea, '16.0', 'should have unprotected opening area of 16.0%');
 
     expectRating('Combustible construction');
     expectRating('Non-combustible cladding');
@@ -117,7 +117,7 @@ test('displays the correct imperial calculation result', function() {
     find('.face-1 input[name=width]').trigger('keyup');
     // return pauseTest();
     var unprotectedOpeningArea = find('.face-1 input[name=area]').val();
-    ok(unprotectedOpeningArea === '43.0');
+    equal(unprotectedOpeningArea, '43.0', 'should have unprotected opening area of 43.0%');
 
     expectRating('Combustible construction');
     expectRating('Combustible cladding');
