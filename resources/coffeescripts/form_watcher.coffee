@@ -111,7 +111,7 @@ class FormWatcher
         height: @height()
         unprotected_opening_area: @area()
 
-      @$(".distance").val(distance.round(4))
+      @$(".distance").val(distance.round(4)/@imperialMultiplier())
       @setRating()
 
   imperial: =>

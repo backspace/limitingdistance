@@ -146,7 +146,7 @@
           height: this.height(),
           unprotected_opening_area: this.area()
         });
-        this.$(".distance").val(distance.round(4));
+        this.$(".distance").val(distance.round(4) / this.imperialMultiplier());
         return this.setRating();
       }
     };
