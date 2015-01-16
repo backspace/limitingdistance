@@ -27,7 +27,20 @@ export default Ember.Component.extend({
     return this.convertFromMetric(this.get('face.distance'));
   }.property('face.distance', 'isImperial'),
 
-  unprotectedOpeningArea: Ember.computed.alias('face.unprotectedOpeningArea'),
+  unprotectedOpeningArea: function(key, value) {
+    if (arguments.length > 1) {
+      this.set('face.unprotectedOpeningArea', parseFloat(value));
+    }
+
+    var area = this.get('face.unprotectedOpeningArea');
+
+    if (Ember.isPresent(area)) {
+      return area.toFixed(1);
+    }
+    else {
+      return undefined;
+    }
+  }.property('face.unprotectedOpeningArea'),
 
   constructionRating: function() {
     var combustibleConstruction = this.get('face.combustibleConstruction');

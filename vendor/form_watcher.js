@@ -6,21 +6,13 @@
   FormWatcher = (function() {
     function FormWatcher(element, calculator, face, project) {
       this.element = element;
-      this.calculator = calculator;
       this.face = face;
       this.project = project;
-      this.areaChange = __bind(this.areaChange, this);
-      this.relevantChange = __bind(this.relevantChange, this);
-      this.change = __bind(this.change, this);
       this.$ = __bind(this.$, this);
       this.add = __bind(this.add, this);
       this.remove = __bind(this.remove, this);
       this.$el = $(this.element);
-      this.$(".height, .width, .distance").keyup(this.change, this.relevantChange);
-      this.project.addObserver('occupancyGroup', this.change);
-      this.project.addObserver('fireProtection', this.change);
       this.$el.find('input[step]').draggableNumber();
-      this.$(".area").keyup(this.areaChange, this.relevantChange);
       this.$(".remove").click(this.remove);
       this.$(".add").click(this.add);
     }
@@ -42,52 +34,8 @@
       }
     };
 
-    FormWatcher.prototype.ready = function() {
-      return !(this.$(".height").val().blank() || this.$(".width").val().blank() || (this.$(".distance").val().blank() && $(".area").val().blank()));
-    };
-
     FormWatcher.prototype.$ = function(selector) {
       return this.$el.find(selector);
-    };
-
-    FormWatcher.prototype.change = function() {
-      var percent;
-      if (this.ready()) {
-        percent = this.calculator.getPercent({
-          sprinklered: this.project.get('isSprinklered'),
-          group: this.project.get('occupancyGroup'),
-          width: this.width(),
-          height: this.height(),
-          limiting_distance: this.distance()
-        });
-        this.$(".area").val(percent.toFixed(1));
-      }
-    };
-
-    FormWatcher.prototype.relevantChange = function(event) {
-      var deleteKeys, numberKeys, periodKey, relevantKeys, _ref;
-      numberKeys = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57];
-      deleteKeys = [46, 8];
-      periodKey = [190];
-      relevantKeys = numberKeys.concat(deleteKeys).concat(periodKey);
-      if ((_ref = event.which, __indexOf.call(relevantKeys, _ref) >= 0) || !event.which) {
-        return event.data();
-      }
-    };
-
-    FormWatcher.prototype.areaChange = function() {
-      var distance;
-      if (this.ready()) {
-        $(".distance").val("");
-        distance = this.calculator.getLimitingDistance({
-          sprinklered: this.sprinklers(),
-          group: this.group(),
-          width: this.width(),
-          height: this.height(),
-          unprotected_opening_area: this.area()
-        });
-        this.$(".distance").val(distance.round(4));
-      }
     };
 
     FormWatcher.prototype.imperial = function() {
