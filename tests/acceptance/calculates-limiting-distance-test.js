@@ -24,8 +24,6 @@ test('supports entering the unprotected area to calculate the limiting distance'
   fillIn('.face-1 input[name=area]', 7);
 
   andThen(function() {
-    // FIXME currently required to trigger area calculation
-    find('.face-1 input[name=area]').trigger('keyup');
     var limitingDistance = find('.face-1 input[name=distance]').val();
     equal(limitingDistance, '1.2', 'should have limiting distance of 1.2');
   });

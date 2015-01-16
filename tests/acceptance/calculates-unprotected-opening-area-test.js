@@ -28,17 +28,9 @@ test('displays the correct calculation result for the first group', function() {
   fillIn('.face-1 input[name=distance]', 1.2);
 
   andThen(function() {
-    // FIXME currently required to trigger area calculation
-    find('.face-1 input[name=width]').trigger('keyup');
     var unprotectedOpeningArea = find('.face-1 input[name=area]').val();
     equal(unprotectedOpeningArea, '7.0', 'should have unprotected opening area of 7.0%');
 
-    // FIXME currently required to trigger ratings
-    fillIn('.face-1 input[name=area]', unprotectedOpeningArea);
-  });
-
-  find('.face-1 input[name=area]').trigger('keyup');
-  andThen(function() {
     expectRating('Non-combustible construction');
     expectRating('Non-combustible cladding');
     expectRating('1h fire-resistance rating');
@@ -57,17 +49,9 @@ test('displays the correct calculation result for the second group', function() 
   fillIn('.face-1 input[name=distance]', 3.5);
 
   andThen(function() {
-    // FIXME currently required to trigger area calculation
-    find('.face-1 input[name=width]').trigger('keyup');
     var unprotectedOpeningArea = find('.face-1 input[name=area]').val();
     equal(unprotectedOpeningArea, '16.0', 'should have unprotected opening area of 16.0%');
 
-    // FIXME currently required to trigger ratings
-    fillIn('.face-1 input[name=area]', unprotectedOpeningArea);
-  });
-
-  find('.face-1 input[name=area]').trigger('keyup');
-  andThen(function() {
     expectRating('Combustible construction');
     expectRating('Non-combustible cladding');
     expectRating('2h fire-resistance rating');
@@ -86,17 +70,9 @@ test('displays the correct imperial calculation result', function() {
   fillIn('.face-1 input[name=distance]', 9);
 
   andThen(function() {
-    // FIXME currently required to trigger area calculation
-    find('.face-1 input[name=width]').trigger('keyup');
     var unprotectedOpeningArea = find('.face-1 input[name=area]').val();
     equal(unprotectedOpeningArea, '10.8', 'should have unprotected opening area of 10.8%');
 
-    // FIXME currently required to trigger ratings
-    fillIn('.face-1 input[name=area]', unprotectedOpeningArea);
-  });
-
-  find('.face-1 input[name=area]').trigger('keyup');
-  andThen(function() {
     expectRating('Combustible construction');
     expectRating('Non-combustible cladding');
     expectRating('1h fire-resistance rating');
