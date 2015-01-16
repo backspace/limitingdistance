@@ -33,7 +33,13 @@
     <div class='section'>
       <div class='heading'>Exposed building face</div>
       <div>
-        <div class='rating'>&nbsp;</div>
+        <div class='rating'>
+          {{#each rating in ratings}}
+            {{rating}}<br>
+          {{else}}
+            &nbsp;
+          {{/each}}
+        </div>
       </div>
     </div>
   </div>

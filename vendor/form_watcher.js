@@ -10,7 +10,6 @@
       this.face = face;
       this.project = project;
       this.areaChange = __bind(this.areaChange, this);
-      this.setRating = __bind(this.setRating, this);
       this.relevantChange = __bind(this.relevantChange, this);
       this.change = __bind(this.change, this);
       this.$ = __bind(this.$, this);
@@ -62,7 +61,6 @@
           limiting_distance: this.distance()
         });
         this.$(".area").val(percent.toFixed(1));
-        return this.setRating();
       }
     };
 
@@ -77,30 +75,6 @@
       }
     };
 
-    FormWatcher.prototype.setRating = function() {
-      var area, g1, notes, rating;
-      area = this.area();
-      g1 = this.group() === '1';
-      notes = [];
-      if (area <= 10) {
-        rating = g1 ? "1h" : "2h";
-        notes.push("Non-combustible construction");
-        notes.push("Non-combustible cladding");
-      } else if (area > 10 && area < 25) {
-        rating = g1 ? "1h" : "2h";
-        notes.push("Combustible construction");
-        notes.push("Non-combustible cladding");
-      } else {
-        rating = g1 ? "45min" : "1h";
-        notes.push("Combustible construction");
-        notes.push("Combustible cladding");
-      }
-      if (area < 100) {
-        notes.push("" + rating + " fire-resistance rating");
-      }
-      return this.$(".rating").html(notes.join("<br>"));
-    };
-
     FormWatcher.prototype.areaChange = function() {
       var distance;
       if (this.ready()) {
@@ -113,7 +87,6 @@
           unprotected_opening_area: this.area()
         });
         this.$(".distance").val(distance.round(4));
-        return this.setRating();
       }
     };
 
