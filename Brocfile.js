@@ -25,7 +25,6 @@ app.import('vendor/jquery.string.1.1.0-min.js');
 app.import('vendor/jquery.draggableNumber.js');
 app.import('vendor/limiting_distance_calculator.js');
 app.import('vendor/face_watcher.js');
-app.import('vendor/form_watcher.js');
 app.import('vendor/application.js');
 app.import('vendor/data.js');
 

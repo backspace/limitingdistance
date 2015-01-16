@@ -157,9 +157,5 @@ export default Ember.Component.extend({
 
   makeNumbersDraggable: function() {
     this.$('input[step]').draggableNumber();
-  }.on('didInsertElement'),
-
-  watchForm: function() {
-    new window.FormWatcher(this.$(), new window.LimitingDistanceCalculator(window.tables), this.get('face'), this.get('face.project'));
   }.on('didInsertElement')
 });
