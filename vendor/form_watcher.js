@@ -12,7 +12,6 @@
       this.add = __bind(this.add, this);
       this.remove = __bind(this.remove, this);
       this.$el = $(this.element);
-      this.$el.find('input[step]').draggableNumber();
       this.$(".remove").click(this.remove);
       this.$(".add").click(this.add);
     }
