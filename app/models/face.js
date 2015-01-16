@@ -80,7 +80,7 @@ export default Ember.Object.extend({
 
       this.set('unprotectedOpeningArea', percent);
     }
-  }.observes('distance'),
+  },
 
   setLimitingDistance: function() {
     var height = this.get('height');
@@ -102,5 +102,5 @@ export default Ember.Object.extend({
 
       this.set('distance', distance);
     }
-  }.observes('unprotectedOpeningArea')
+  }
 });

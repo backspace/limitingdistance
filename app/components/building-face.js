@@ -22,6 +22,7 @@ export default Ember.Component.extend({
   distance: function(key, value) {
     if (arguments.length > 1) {
       this.set('face.distance', this.convertToMetric(parseFloat(value)));
+      this.get('face').setUnprotectedOpeningArea();
     }
 
     return this.convertFromMetric(this.get('face.distance'));
@@ -30,6 +31,7 @@ export default Ember.Component.extend({
   unprotectedOpeningArea: function(key, value) {
     if (arguments.length > 1) {
       this.set('face.unprotectedOpeningArea', parseFloat(value));
+      this.get('face').setLimitingDistance();
     }
 
     var area = this.get('face.unprotectedOpeningArea');
