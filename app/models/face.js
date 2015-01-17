@@ -1,5 +1,8 @@
 import Ember from 'ember';
 
+import LimitingDistanceCalculator from '../utils/limiting-distance-calculator';
+import tables from '../utils/tables';
+
 export default Ember.Object.extend({
   area: function() {
     var width = this.get('width');
@@ -57,7 +60,7 @@ export default Ember.Object.extend({
   }.property('unprotectedOpeningArea'),
 
   setCalculator: function() {
-    this.calculator = new window.LimitingDistanceCalculator(window.tables);
+    this.calculator = new LimitingDistanceCalculator(tables);
   }.on('init'),
 
   setUnprotectedOpeningArea: function() {
