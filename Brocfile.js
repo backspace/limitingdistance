@@ -21,7 +21,6 @@ var app = new EmberApp({
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
-app.import('vendor/jquery.string.1.1.0-min.js');
 app.import('vendor/jquery.draggableNumber.js');
 app.import('vendor/face_watcher.js');
 
