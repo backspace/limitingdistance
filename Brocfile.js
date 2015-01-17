@@ -24,6 +24,5 @@ var app = new EmberApp({
 app.import('vendor/jquery.string.1.1.0-min.js');
 app.import('vendor/jquery.draggableNumber.js');
 app.import('vendor/face_watcher.js');
-app.import('vendor/application.js');
 
 module.exports = app.toTree();
