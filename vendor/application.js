@@ -49,6 +49,3 @@ Array.prototype.include = function(obj) {
   }
   return false;
 }
-
-var FTM = 0.3048;
-
