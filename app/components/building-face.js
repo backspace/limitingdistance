@@ -164,6 +164,10 @@ export default Ember.Component.extend({
   actions: {
     addFace() {
       this.get('project').addFace();
+    },
+
+    removeFace() {
+      this.get('project').removeFace(this.get('face'));
     }
   }
 });
