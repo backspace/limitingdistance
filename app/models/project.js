@@ -3,7 +3,7 @@ import Ember from 'ember';
 import Face from './face';
 
 export default Ember.Object.extend({
-  units: 'metric',
+  units: 'imperial',
   occupancyGroup: '1',
   fireProtection: 'unsprinklered',
 
