@@ -22,6 +22,5 @@ var app = new EmberApp({
 // along with the exports of each module as its value.
 
 app.import('vendor/jquery.draggableNumber.js');
-app.import('vendor/face_watcher.js');
 
 module.exports = app.toTree();
