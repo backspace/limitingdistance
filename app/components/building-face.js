@@ -159,5 +159,11 @@ export default Ember.Component.extend({
 
   makeNumbersDraggable: function() {
     this.$('input[step]').draggableNumber();
-  }.on('didInsertElement')
+  }.on('didInsertElement'),
+
+  actions: {
+    addFace() {
+      this.get('project').addFace();
+    }
+  }
 });
