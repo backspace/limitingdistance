@@ -23,12 +23,14 @@ test('starts off with four faces', function() {
   });
 });
 
-test('clicking the plus adds a face', function() {
+test('clicking the plus adds faces', function() {
   visit('/');
 
+  click('.face-1 .add');
   click('.face-1 .add');
 
   andThen(function() {
     equal(find('input[placeholder*="Building Face 5"]').length, 1, 'should have building face 5');
+    equal(find('input[placeholder*="Building Face 6"]').length, 1, 'should have building face 6');
   });
 });
