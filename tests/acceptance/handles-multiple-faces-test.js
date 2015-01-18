@@ -34,3 +34,15 @@ test('clicking the plus adds faces', function() {
     equal(find('input[placeholder*="Building Face 6"]').length, 1, 'should have building face 6');
   });
 });
+
+test('click the minus removes faces', function() {
+  visit('/');
+
+  click('.face-4 .remove');
+  click('.face-3 .remove');
+
+  andThen(function() {
+    equal(find('.face-3').length, 0, 'building face 3 should be gone');
+    equal(find('.face-4').length, 0, 'building face 4 should be gone');
+  });
+});

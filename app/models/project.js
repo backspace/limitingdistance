@@ -16,5 +16,9 @@ export default Ember.Object.extend({
 
   addFace() {
     this.get('faces').addObject(Face.create({project: this}));
+  },
+
+  removeFace(face) {
+    this.get('faces').removeObject(face);
   }
 });
