@@ -18,3 +18,7 @@ install:
 
 script:
   - npm test
+
+notifications:
+  slack:
+    secure: BthXMOT8v9ijtS7YHNxl6svAlTCjxFDziORqXmyvUhLv6chrp148oxe6VbR4wEtRvLx6Y6fGZ7u2d/QdzpsAyK92WiRSbAg8B4SWQi6rBJ6ICuFcpygW0f6ej8ygwcKVlXj47YVR67Ec4xHd8OsDUSgBCtAXOSoGy0WacYiJBq0=
