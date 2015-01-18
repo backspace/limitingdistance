@@ -1,4 +1,4 @@
-# Limiting Distance
+# Limiting Distance [![Build Status](https://travis-ci.org/backspace/limitingdistance.svg?branch=ember)](https://travis-ci.org/backspace/limitingdistance)
 
 This application takes in building face parameters and calculates the unprotected opening area and lists exposed building face qualities. The data come from the National Building Code of Canada, section 3.2.3.1.
 
