@@ -10,7 +10,11 @@ export default Ember.Object.extend({
   isImperial: Ember.computed.equal('units', 'imperial'),
   isSprinklered: Ember.computed.equal('fireProtection', 'sprinklered'),
 
-  faces: function() {
-    return [Face.create({index: 1, project: this}), Face.create({index: 2, project: this}), Face.create({index: 3, project: this}), Face.create({index: 4, project: this})];
-  }.property()
+  setInitialFaces: function() {
+    this.set('faces', [Face.create({index: 1, project: this}), Face.create({index: 2, project: this}), Face.create({index: 3, project: this}), Face.create({index: 4, project: this})]);
+  }.on('init'),
+
+  addFace() {
+    this.get('faces').addObject(Face.create({index: 5, project: this}));
+  }
 });

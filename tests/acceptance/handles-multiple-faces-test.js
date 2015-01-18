@@ -22,3 +22,13 @@ test('starts off with four faces', function() {
     equal(find('input[placeholder*="Building Face 4"]').length, 1, 'should have building face 4');
   });
 });
+
+test('clicking the plus adds a face', function() {
+  visit('/');
+
+  click('.face-1 .add');
+
+  andThen(function() {
+    equal(find('input[placeholder*="Building Face 5"]').length, 1, 'should have building face 5');
+  });
+});
