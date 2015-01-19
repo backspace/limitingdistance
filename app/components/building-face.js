@@ -37,7 +37,8 @@ export default Ember.Component.extend({
     var area = this.get('face.unprotectedOpeningArea');
 
     if (Ember.isPresent(area)) {
-      return area.toFixed(1);
+      if (arguments.length > 1) { return area; }
+      else { return area.toFixed(1); }
     }
     else {
       return undefined;
