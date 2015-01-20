@@ -5,7 +5,7 @@ import Project from '../models/project';
 export default Ember.Controller.extend({
   faceCount: function() {
     return `faces-${this.get('faces.length')}`;
-  }.property('faces'),
+  }.property('faces.length'),
 
   faces: Ember.computed.alias('project.faces'),
 
