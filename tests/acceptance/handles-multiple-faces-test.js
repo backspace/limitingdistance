@@ -35,7 +35,7 @@ test('clicking the plus adds faces', function() {
   });
 });
 
-test('click the minus removes faces', function() {
+test('clicking the minus removes faces', function() {
   visit('/');
 
   click('.face-4 .remove');
