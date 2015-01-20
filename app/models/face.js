@@ -6,7 +6,7 @@ import tables from '../utils/tables';
 export default Ember.Object.extend({
   index: function() {
     return this.get('project.faces').indexOf(this) + 1;
-  }.property('project.faces'),
+  }.property('project.faces.length'),
 
   area: function() {
     var width = this.get('width');
