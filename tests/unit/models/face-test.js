@@ -37,7 +37,7 @@ moduleFor('model:face', 'Face in group A, C, D, or F3', {
   }
 });
 
-test('it deterimines its fire-resistance rating', function() {
+test('it determines its fire-resistance rating', function() {
   var model = this.model;
 
   equal(model.get('fireResistanceMinutes'), undefined, 'should have no defined fire-resistance rating for no defined unprotected opening area');
@@ -60,7 +60,7 @@ moduleFor('model:face', 'Face in group E, F1, or F2', {
   }
 });
 
-test('it deterimines its fire-resistance rating', function() {
+test('it determines its fire-resistance rating', function() {
   var model = this.model;
 
   model.set('unprotectedOpeningArea', 20);
