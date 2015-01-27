@@ -72,9 +72,9 @@ export default Ember.Object.extend({
     var width = this.get('width');
     var distance = this.get('distance');
 
-    if (Ember.isPresent(height) &&
-        Ember.isPresent(width) &&
-        Ember.isPresent(distance))
+    if (this.isValid(height) &&
+        this.isValid(width) &&
+        this.isValid(distance))
     {
       var project = this.get('project');
       var percent = this.calculator.getPercent({
@@ -94,9 +94,9 @@ export default Ember.Object.extend({
     var width = this.get('width');
     var unprotectedOpeningArea = this.get('unprotectedOpeningArea');
 
-    if (Ember.isPresent(height) &&
-        Ember.isPresent(width) &&
-        Ember.isPresent(unprotectedOpeningArea))
+    if (this.isValid(height) &&
+        this.isValid(width) &&
+        this.isValid(unprotectedOpeningArea))
     {
       var project = this.get('project');
       var distance = this.calculator.getLimitingDistance({
@@ -109,5 +109,9 @@ export default Ember.Object.extend({
 
       this.set('distance', distance);
     }
+  },
+
+  isValid(number) {
+    return Ember.isPresent(number) && !isNaN(number);
   }
 });
