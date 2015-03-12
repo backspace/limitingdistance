@@ -21,7 +21,7 @@ test('converts metric to imperial', function() {
 
   andThen(function() {
     var imperialHeight = find('.face-1 input[name=height]').val();
-    equal(imperialHeight, '10000', 'should equal 10000 feet');
+    equal(imperialHeight, '10000.0', 'should equal 10000 feet');
   });
 });
 
@@ -35,5 +35,17 @@ test('converts imperial to metric', function() {
   andThen(function() {
     var metricHeight = find('.face-1 input[name=height]').val();
     equal(metricHeight, '3048', 'should equal 3048 metres');
+  });
+});
+
+test('rounds imperial', function() {
+  visit('/');
+
+  click('label:contains(Imperial) input');
+  fillIn('.face-1 input[name=height]', 7);
+
+  andThen(function() {
+    var imperialHeight = find('.face-1 input[name=height]').val();
+    equal(imperialHeight, '7.0', 'should equal 7 feet');
   });
 });

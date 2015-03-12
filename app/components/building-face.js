@@ -119,7 +119,7 @@ export default Ember.Component.extend({
       return undefined;
     }
     else if (this.get('isImperial')) {
-      return value/FTM;
+      return (value/FTM).toFixed(1);
     }
     else
     {
