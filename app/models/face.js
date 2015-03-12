@@ -111,6 +111,10 @@ export default Ember.Object.extend({
     }
   },
 
+  projectAttributesChanged: function() {
+    this.setUnprotectedOpeningArea();
+  }.observes('project.occupancyGroup', 'project.fireProtection'),
+
   isValid(number) {
     return Ember.isPresent(number) && !isNaN(number);
   }
