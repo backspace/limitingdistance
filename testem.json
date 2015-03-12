@@ -6,6 +6,6 @@
   ],
   "launch_in_dev": [
     "PhantomJS",
-    "Testem Canary"
+    "Chrome"
   ]
 }
