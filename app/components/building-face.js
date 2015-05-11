@@ -6,26 +6,26 @@ export default Ember.Component.extend({
   width: function(key, value) {
     if (arguments.length > 1) {
       this.set('face.width', this.convertToMetric(parseFloat(value)));
+    } else {
+      return this.convertFromMetric(this.get('face.width'));
     }
-
-    return this.convertFromMetric(this.get('face.width'));
   }.property('face.width', 'isImperial'),
 
   height: function(key, value) {
     if (arguments.length > 1) {
       this.set('face.height', this.convertToMetric(parseFloat(value)));
+    } else {
+      return this.convertFromMetric(this.get('face.height'));
     }
-
-    return this.convertFromMetric(this.get('face.height'));
   }.property('face.height', 'isImperial'),
 
   distance: function(key, value) {
     if (arguments.length > 1) {
       this.set('face.distance', this.convertToMetric(parseFloat(value)));
       this.get('face').setUnprotectedOpeningArea();
+    } else {
+      return this.convertFromMetric(this.get('face.distance'));
     }
-
-    return this.convertFromMetric(this.get('face.distance'));
   }.property('face.distance', 'isImperial'),
 
   unprotectedOpeningArea: function(key, value) {
@@ -128,17 +128,22 @@ export default Ember.Component.extend({
   },
 
   area: function() {
-    var width = this.get('width');
-    var height = this.get('height');
+    var width = this.get('face.width');
+    var height = this.get('face.height');
 
     if (width && height) {
-      return width*height;
+      if (this.get('isImperial')) {
+        return (width/FTM)*(height/FTM);
+      }
+      else {
+        return width*height;
+      }
     }
     else
     {
       return undefined;
     }
-  }.property('width', 'height'),
+  }.property('face.width', 'face.height', 'isImperial'),
 
   project: Ember.computed.alias('face.project'),
 
