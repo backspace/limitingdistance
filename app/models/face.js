@@ -13,7 +13,7 @@ export default Ember.Object.extend({
     var height = this.get('height');
 
     if (width && height) {
-      return this.get('width') * this.get('height');
+      return width*height;
     }
     else {
       return undefined;
