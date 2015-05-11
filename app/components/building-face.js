@@ -135,7 +135,7 @@ export default Ember.Component.extend({
 
     if (width && height) {
       if (this.get('isImperial')) {
-        return (width/FTM)*(height/FTM).toFixed(1);
+        return (width/FTM).toFixed(1)*(height/FTM).toFixed(1);
       }
       else {
         return width*height;

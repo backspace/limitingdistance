@@ -42,8 +42,8 @@ test('rounds imperial areas', function() {
   visit('/');
 
   click('label:contains(Imperial) input');
-  fillIn('.face-1 input[name=height]', 7);
-  fillIn('.face-1 input[name=width]', 10);
+  fillIn('.face-1 input[name=width]', 7);
+  fillIn('.face-1 input[name=height]', 10);
 
   andThen(function() {
     var imperialArea = find('.face-1 .calculated-area input').val();
