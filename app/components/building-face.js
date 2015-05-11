@@ -6,6 +6,7 @@ export default Ember.Component.extend({
   width: function(key, value) {
     if (arguments.length > 1) {
       this.set('face.width', this.convertToMetric(parseFloat(value)));
+      this.get('face').setUnprotectedOpeningArea();
     } else {
       return this.convertFromMetric(this.get('face.width'));
     }
@@ -14,6 +15,7 @@ export default Ember.Component.extend({
   height: function(key, value) {
     if (arguments.length > 1) {
       this.set('face.height', this.convertToMetric(parseFloat(value)));
+      this.get('face').setUnprotectedOpeningArea();
     } else {
       return this.convertFromMetric(this.get('face.height'));
     }

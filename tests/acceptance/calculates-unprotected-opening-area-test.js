@@ -56,6 +56,13 @@ test('displays the correct calculation result for the second group', function() 
     expectRating('Non-combustible cladding');
     expectRating('2h fire-resistance rating');
   });
+
+  fillIn('.face-1 input[name=height]', 10);
+
+  andThen(function() {
+    var unprotectedOpeningArea = find('.face-1 input[name=area]').val();
+    equal(unprotectedOpeningArea, '6.5', 'should have updated the opening area to 6.5%');
+  });
 });
 
 test('displays the correct imperial calculation result', function() {
@@ -76,5 +83,12 @@ test('displays the correct imperial calculation result', function() {
     expectRating('Combustible construction');
     expectRating('Non-combustible cladding');
     expectRating('1h fire-resistance rating');
+  });
+
+  fillIn('.face-1 input[name=height]', 60);
+
+  andThen(function() {
+    var unprotectedOpeningArea = find('.face-1 input[name=area]').val();
+    equal(unprotectedOpeningArea, '9.3', 'should updated the opening area to 9.3%');
   });
 });
