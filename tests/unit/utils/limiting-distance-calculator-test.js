@@ -1,17 +1,18 @@
 import LimitingDistanceCalculator from 'limitingdistance/utils/limiting-distance-calculator';
+import {module, test} from 'qunit';
 import tables from 'limitingdistance/utils/tables';
 
 // TODO this tests both the data and the calculator;
 // should be separated
 
 module('LimitingDistanceCalculator', {
-  setup: function() {
+  beforeEach: function() {
     this.calculator = new LimitingDistanceCalculator(tables);
   }
 });
 
-function validateCalculatedUnprotectedOpeningArea(calculator, parameters) {
-  equal(calculator.getPercent({
+function validateCalculatedUnprotectedOpeningArea(assert, calculator, parameters) {
+  assert.equal(calculator.getPercent({
     sprinklered: parameters.sprinklered,
     group: parameters.group,
     width: parameters.width,
@@ -20,8 +21,8 @@ function validateCalculatedUnprotectedOpeningArea(calculator, parameters) {
   }), parameters.unprotectedOpeningArea, `${parameters.width}x${parameters.height} LD ${parameters.limitingDistance} = ${parameters.unprotectedOpeningArea}%`);
 }
 
-function validateCalculatedLimitingDistance(calculator, parameters) {
-  equal(calculator.getLimitingDistance({
+function validateCalculatedLimitingDistance(assert, calculator, parameters) {
+  assert.equal(calculator.getLimitingDistance({
     sprinklered: parameters.sprinklered,
     group: parameters.group,
     width: parameters.width,
@@ -30,7 +31,7 @@ function validateCalculatedLimitingDistance(calculator, parameters) {
   }), parameters.limitingDistance, `${parameters.width}x${parameters.height} ${parameters.unprotectedOpeningArea}% = LD ${parameters.limitingDistance} `);
 }
 
-test('it returns exact values from the tables', function() {
+test('it returns exact values from the tables', function(assert) {
   var squareishRatioExample = {
     sprinklered: false,
     group: LimitingDistanceCalculator.GROUP_ABCDF3,
@@ -40,8 +41,8 @@ test('it returns exact values from the tables', function() {
     unprotectedOpeningArea: 7
   };
 
-  validateCalculatedUnprotectedOpeningArea(this.calculator, squareishRatioExample);
-  validateCalculatedLimitingDistance(this.calculator, squareishRatioExample);
+  validateCalculatedUnprotectedOpeningArea(assert, this.calculator, squareishRatioExample);
+  validateCalculatedLimitingDistance(assert, this.calculator, squareishRatioExample);
 
   var longerRatioExample = {
     sprinklered: false,
@@ -52,8 +53,8 @@ test('it returns exact values from the tables', function() {
     unprotectedOpeningArea: 31
   };
 
-  validateCalculatedUnprotectedOpeningArea(this.calculator, longerRatioExample);
-  validateCalculatedLimitingDistance(this.calculator, longerRatioExample);
+  validateCalculatedUnprotectedOpeningArea(assert, this.calculator, longerRatioExample);
+  validateCalculatedLimitingDistance(assert, this.calculator, longerRatioExample);
 
   var longestRatioExample = {
     sprinklered: false,
@@ -64,11 +65,11 @@ test('it returns exact values from the tables', function() {
     unprotectedOpeningArea: 55
   };
 
-  validateCalculatedUnprotectedOpeningArea(this.calculator, longestRatioExample);
-  validateCalculatedLimitingDistance(this.calculator, longestRatioExample);
+  validateCalculatedUnprotectedOpeningArea(assert, this.calculator, longestRatioExample);
+  validateCalculatedLimitingDistance(assert, this.calculator, longestRatioExample);
 });
 
-test('it returns values interpolated between areas', function() {
+test('it returns values interpolated between areas', function(assert) {
   var shorterDistanceExample = {
     sprinklered: false,
     group: LimitingDistanceCalculator.GROUP_ABCDF3,
@@ -78,7 +79,7 @@ test('it returns values interpolated between areas', function() {
     unprotectedOpeningArea: 24.4
   };
 
-  validateCalculatedUnprotectedOpeningArea(this.calculator, shorterDistanceExample);
+  validateCalculatedUnprotectedOpeningArea(assert, this.calculator, shorterDistanceExample);
   // TODO this is disabled because the reverse yields 3.9949… rather than 4
   // validateCalculatedLimitingDistance(this.calculator, shorterDistanceExample);
 
@@ -91,11 +92,11 @@ test('it returns values interpolated between areas', function() {
     unprotectedOpeningArea: 37.7
   };
 
-  validateCalculatedUnprotectedOpeningArea(this.calculator, longerDistanceExample);
-  validateCalculatedLimitingDistance(this.calculator, longerDistanceExample);
+  validateCalculatedUnprotectedOpeningArea(assert, this.calculator, longerDistanceExample);
+  validateCalculatedLimitingDistance(assert, this.calculator, longerDistanceExample);
 });
 
-test('it returns a value intepolated between both area and distance', function() {
+test('it returns a value intepolated between both area and distance', function(assert) {
   var doubleInterpolatedExample = {
     sprinklered: false,
     group: LimitingDistanceCalculator.GROUP_ABCDF3,
@@ -105,12 +106,12 @@ test('it returns a value intepolated between both area and distance', function()
     unprotectedOpeningArea: 31.05
   };
 
-  validateCalculatedUnprotectedOpeningArea(this.calculator, doubleInterpolatedExample);
+  validateCalculatedUnprotectedOpeningArea(assert, this.calculator, doubleInterpolatedExample);
   // TODO this is disabled because the reverse yields 4.507… rather than 4.5
   // validateCalculatedLimitingDistance(this.calculator, doubleInterpolatedExample);
 });
 
-test('returns valid values for various unsprinklered group A… spot checks', function() {
+test('returns valid values for various unsprinklered group A… spot checks', function(assert) {
   var example1 = {
     sprinklered: false,
     group: LimitingDistanceCalculator.GROUP_ABCDF3,
@@ -120,8 +121,8 @@ test('returns valid values for various unsprinklered group A… spot checks', fu
     unprotectedOpeningArea: 25
   };
 
-  validateCalculatedUnprotectedOpeningArea(this.calculator, example1);
-  validateCalculatedLimitingDistance(this.calculator, example1);
+  validateCalculatedUnprotectedOpeningArea(assert, this.calculator, example1);
+  validateCalculatedLimitingDistance(assert, this.calculator, example1);
 
   var example2 = {
     sprinklered: false,
@@ -132,8 +133,8 @@ test('returns valid values for various unsprinklered group A… spot checks', fu
     unprotectedOpeningArea: 19
   };
 
-  validateCalculatedUnprotectedOpeningArea(this.calculator, example2);
-  validateCalculatedLimitingDistance(this.calculator, example2);
+  validateCalculatedUnprotectedOpeningArea(assert, this.calculator, example2);
+  validateCalculatedLimitingDistance(assert, this.calculator, example2);
 
   var example3 = {
     sprinklered: false,
@@ -144,11 +145,11 @@ test('returns valid values for various unsprinklered group A… spot checks', fu
     unprotectedOpeningArea: 38
   };
 
-  validateCalculatedUnprotectedOpeningArea(this.calculator, example3);
-  validateCalculatedLimitingDistance(this.calculator, example3);
+  validateCalculatedUnprotectedOpeningArea(assert, this.calculator, example3);
+  validateCalculatedLimitingDistance(assert, this.calculator, example3);
 });
 
-test('returns valid values for various unsprinklered group E… spot checks', function() {
+test('returns valid values for various unsprinklered group E… spot checks', function(assert) {
   var example1 = {
     sprinklered: false,
     group: LimitingDistanceCalculator.GROUP_EF1F2,
@@ -158,8 +159,8 @@ test('returns valid values for various unsprinklered group E… spot checks', fu
     unprotectedOpeningArea: 16
   };
 
-  validateCalculatedUnprotectedOpeningArea(this.calculator, example1);
-  validateCalculatedLimitingDistance(this.calculator, example1);
+  validateCalculatedUnprotectedOpeningArea(assert, this.calculator, example1);
+  validateCalculatedLimitingDistance(assert, this.calculator, example1);
 
   var example2 = {
     sprinklered: false,

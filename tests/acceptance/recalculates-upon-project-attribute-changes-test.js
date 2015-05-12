@@ -1,18 +1,19 @@
 import Ember from 'ember';
+import {module, test} from 'qunit';
 import startApp from '../helpers/start-app';
 
 var application;
 
 module('Acceptance: Recalculates upon project attribute changes', {
-  setup: function() {
+  beforeEach: function() {
     application = startApp();
   },
-  teardown: function() {
+  afterEach: function() {
     Ember.run(application, 'destroy');
   }
 });
 
-test('changing the occupancy group or sprinklers triggers recalculation', function() {
+test('changing the occupancy group or sprinklers triggers recalculation', function(assert) {
   visit('/');
 
   click('label:contains(Metric) input');
@@ -25,20 +26,20 @@ test('changing the occupancy group or sprinklers triggers recalculation', functi
 
   andThen(function() {
     var area = find('.face-1 input[name=area]').val();
-    equal(area, '66.0', 'should have an unprotected opening area of 66.0%');
+    assert.equal(area, '66.0', 'should have an unprotected opening area of 66.0%');
   });
 
   click('label:contains(F1) input');
 
   andThen(function() {
     var area = find('.face-1 input[name=area]').val();
-    equal(area, '33.0', 'should have an unprotected opening area of 33.0%');
+    assert.equal(area, '33.0', 'should have an unprotected opening area of 33.0%');
   });
 
   click('label:contains(Sprinklered) input');
 
   andThen(function() {
     var area = find('.face-1 input[name=area]').val();
-    equal(area, '70.0', 'should have an unprotected opening area of 70.0%');
+    assert.equal(area, '70.0', 'should have an unprotected opening area of 70.0%');
   });
 });

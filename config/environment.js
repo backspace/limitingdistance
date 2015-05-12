@@ -43,9 +43,5 @@ module.exports = function(environment) {
 
   }
 
-  ENV.sassOptions = {
-    inputFile: 'app.sass'
-  };
-
   return ENV;
 };

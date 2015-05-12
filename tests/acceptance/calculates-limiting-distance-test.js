@@ -1,18 +1,19 @@
 import Ember from 'ember';
+import {module, test} from 'qunit';
 import startApp from '../helpers/start-app';
 
 var application;
 
 module('Acceptance: Calculates limiting distance', {
-  setup: function() {
+  beforeEach: function() {
     application = startApp();
   },
-  teardown: function() {
+  afterEach: function() {
     Ember.run(application, 'destroy');
   }
 });
 
-test('supports entering the unprotected area to calculate the limiting distance', function() {
+test('supports entering the unprotected area to calculate the limiting distance', function(assert) {
   visit('/');
 
   click('label:contains(Metric) input');
@@ -25,6 +26,6 @@ test('supports entering the unprotected area to calculate the limiting distance'
 
   andThen(function() {
     var limitingDistance = find('.face-1 input[name=distance]').val();
-    equal(limitingDistance, '1.2', 'should have limiting distance of 1.2');
+    assert.equal(limitingDistance, '1.2', 'should have limiting distance of 1.2');
   });
 });

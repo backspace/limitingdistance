@@ -1,18 +1,19 @@
 import Ember from 'ember';
+import {module, test} from 'qunit';
 import startApp from '../helpers/start-app';
 
 var application;
 
 module('Acceptance: Converts units', {
-  setup: function() {
+  beforeEach: function() {
     application = startApp();
   },
-  teardown: function() {
+  afterEach: function() {
     Ember.run(application, 'destroy');
   }
 });
 
-test('converts metric to imperial', function() {
+test('converts metric to imperial', function(assert) {
   visit('/');
 
   click('label:contains(Metric) input');
@@ -21,11 +22,11 @@ test('converts metric to imperial', function() {
 
   andThen(function() {
     var imperialHeight = find('.face-1 input[name=height]').val();
-    equal(imperialHeight, '10000.0', 'should equal 10000 feet');
+    assert.equal(imperialHeight, '10000.0', 'should equal 10000 feet');
   });
 });
 
-test('converts imperial to metric', function() {
+test('converts imperial to metric', function(assert) {
   visit('/');
 
   click('label:contains(Imperial) input');
@@ -34,11 +35,11 @@ test('converts imperial to metric', function() {
 
   andThen(function() {
     var metricHeight = find('.face-1 input[name=height]').val();
-    equal(metricHeight, '3048', 'should equal 3048 metres');
+    assert.equal(metricHeight, '3048', 'should equal 3048 metres');
   });
 });
 
-test('rounds imperial areas', function() {
+test('rounds imperial areas', function(assert) {
   visit('/');
 
   click('label:contains(Imperial) input');
@@ -47,7 +48,7 @@ test('rounds imperial areas', function() {
 
   andThen(function() {
     var imperialArea = find('.face-1 .calculated-area input').val();
-    equal(imperialArea, '70', 'should equal 70 feet squared');
+    assert.equal(imperialArea, '70', 'should equal 70 feet squared');
   });
 });
 

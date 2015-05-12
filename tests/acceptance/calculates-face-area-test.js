@@ -1,18 +1,19 @@
 import Ember from 'ember';
+import {module, test} from 'qunit';
 import startApp from '../helpers/start-app';
 
 var application;
 
 module('Acceptance: Calculates building face area', {
-  setup: function() {
+  beforeEach: function() {
     application = startApp();
   },
-  teardown: function() {
+  afterEach: function() {
     Ember.run(application, 'destroy');
   }
 });
 
-test('calculates metric area', function() {
+test('calculates metric area', function(assert) {
   visit('/');
 
   click('label:contains(Metric) input');
@@ -21,11 +22,11 @@ test('calculates metric area', function() {
 
   andThen(function() {
     var calculatedArea = find('.face-1 .calculated-area input').val();
-    equal(calculatedArea, '90', 'should equal 90m²');
+    assert.equal(calculatedArea, '90', 'should equal 90m²');
   });
 });
 
-test('calculates imperial area', function() {
+test('calculates imperial area', function(assert) {
   visit('/');
 
   click('label:contains(Imperial) input');
@@ -34,11 +35,11 @@ test('calculates imperial area', function() {
 
   andThen(function() {
     var calculatedArea = find('.face-1 .calculated-area input').val();
-    equal(calculatedArea, '45', 'should equal 45ft²');
+    assert.equal(calculatedArea, '45', 'should equal 45ft²');
   });
 });
 
-test('converts when the units change', function() {
+test('converts when the units change', function(assert) {
   visit('/');
 
   click('label:contains(Metric) input');
@@ -48,13 +49,13 @@ test('converts when the units change', function() {
 
   andThen(function() {
     var calculatedArea = find('.face-1 .calculated-area input').val();
-    equal(calculatedArea, 3048*6096 + '', 'should equal width*height');
+    assert.equal(calculatedArea, 3048*6096 + '', 'should equal width*height');
   });
 
   click('label:contains(Imperial) input');
 
   andThen(function() {
     var calculatedArea = find('.face-1 .calculated-area input').val();
-    equal(calculatedArea, '200000000', 'should equal 200000000');
+    assert.equal(calculatedArea, '200000000', 'should equal 200000000');
   });
 });
