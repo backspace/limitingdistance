@@ -170,4 +170,7 @@ test('returns valid values for various unsprinklered group E… spot checks', fu
     limitingDistance: 9,
     unprotectedOpeningArea: 25
   };
+
+  validateCalculatedUnprotectedOpeningArea(assert, this.calculator, example2);
+  validateCalculatedLimitingDistance(assert, this.calculator, example2);
 });
