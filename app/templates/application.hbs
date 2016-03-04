@@ -13,7 +13,7 @@
   {{project-manager project=project}}
 </div>
 <div class='faces-{{faces.length}} faces'>
-  {{#each face in faces}}
+  {{#each faces as |face|}}
     {{building-face face=face}}
   {{/each}}
 </div>
