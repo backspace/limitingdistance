@@ -160,14 +160,6 @@ export default Ember.Component.extend({
     }
   }.property('project.isImperial'),
 
-  indexClass: function() {
-    return `face-${this.get('face.index')}`;
-  }.property('face.index'),
-
-  labelPlaceholder: function() {
-    return `Building Face ${this.get('face.index')}`;
-  }.property('face.index'),
-
   makeNumbersDraggable: function() {
     this.$('input[step]').draggableNumber();
   }.on('didInsertElement'),

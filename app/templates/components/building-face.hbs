@@ -1,7 +1,7 @@
-<div {{bind-attr class="indexClass :face"}}>
+<div class='face-{{face.index}} face'>
   <div class='face-label'>
     <h3>
-      <input {{bind-attr placeholder="labelPlaceholder"}}>
+      <input placeholder='Building Face {{face.index}}'>
     </h3>
     <div class='controls'>
       <span class='add' {{action 'addFace'}}>&#8853;</span>
