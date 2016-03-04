@@ -4,11 +4,11 @@ import LimitingDistanceCalculator from '../utils/limiting-distance-calculator';
 import tables from '../utils/tables';
 
 export default Ember.Object.extend({
-  index: function() {
+  index: Ember.computed('project.faces.length', function() {
     return this.get('project.faces').indexOf(this) + 1;
-  }.property('project.faces.length'),
+  }),
 
-  area: function() {
+  area: Ember.computed('width', 'height', function() {
     var width = this.get('width');
     var height = this.get('height');
 
@@ -18,9 +18,9 @@ export default Ember.Object.extend({
     else {
       return undefined;
     }
-  }.property('width', 'height'),
+  }),
 
-  combustibleConstruction: function() {
+  combustibleConstruction: Ember.computed('unprotectedOpeningArea', function() {
     var unprotectedOpeningArea = this.get('unprotectedOpeningArea');
 
     if (typeof unprotectedOpeningArea === 'undefined') {
@@ -32,9 +32,9 @@ export default Ember.Object.extend({
     else {
       return true;
     }
-  }.property('unprotectedOpeningArea'),
+  }),
 
-  combustibleCladding: function() {
+  combustibleCladding: Ember.computed('unprotectedOpeningArea', function() {
     var unprotectedOpeningArea = this.get('unprotectedOpeningArea');
 
     if (typeof unprotectedOpeningArea === 'undefined') {
@@ -46,9 +46,9 @@ export default Ember.Object.extend({
     else {
       return true;
     }
-  }.property('unprotectedOpeningArea'),
+  }),
 
-  fireResistanceMinutes: function() {
+  fireResistanceMinutes: Ember.computed('unprotectedOpeningArea', function() {
     var unprotectedOpeningArea = this.get('unprotectedOpeningArea');
     var groupABCDF3 = this.get('project.occupancyGroup') === '1';
 
@@ -61,11 +61,11 @@ export default Ember.Object.extend({
     else {
       return undefined;
     }
-  }.property('unprotectedOpeningArea'),
+  }),
 
-  setCalculator: function() {
+  setCalculator: Ember.on('init', function() {
     this.calculator = new LimitingDistanceCalculator(tables);
-  }.on('init'),
+  }),
 
   setUnprotectedOpeningArea: function() {
     var height = this.get('height');
@@ -111,9 +111,9 @@ export default Ember.Object.extend({
     }
   },
 
-  projectAttributesChanged: function() {
+  projectAttributesChanged: Ember.observer('project.occupancyGroup', 'project.fireProtection', function() {
     this.setUnprotectedOpeningArea();
-  }.observes('project.occupancyGroup', 'project.fireProtection'),
+  }),
 
   isValid(number) {
     return Ember.isPresent(number) && !isNaN(number);

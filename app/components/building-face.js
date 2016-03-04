@@ -3,34 +3,34 @@ import Ember from 'ember';
 var FTM = 0.3048;
 
 export default Ember.Component.extend({
-  width: function(key, value) {
+  width: Ember.computed('face.width', 'isImperial', function(key, value) {
     if (arguments.length > 1) {
       this.set('face.width', this.convertToMetric(parseFloat(value)));
       this.get('face').setUnprotectedOpeningArea();
     } else {
       return this.convertFromMetric(this.get('face.width'));
     }
-  }.property('face.width', 'isImperial'),
+  }),
 
-  height: function(key, value) {
+  height: Ember.computed('face.height', 'isImperial', function(key, value) {
     if (arguments.length > 1) {
       this.set('face.height', this.convertToMetric(parseFloat(value)));
       this.get('face').setUnprotectedOpeningArea();
     } else {
       return this.convertFromMetric(this.get('face.height'));
     }
-  }.property('face.height', 'isImperial'),
+  }),
 
-  distance: function(key, value) {
+  distance: Ember.computed('face.distance', 'isImperial', function(key, value) {
     if (arguments.length > 1) {
       this.set('face.distance', this.convertToMetric(parseFloat(value)));
       this.get('face').setUnprotectedOpeningArea();
     } else {
       return this.convertFromMetric(this.get('face.distance'));
     }
-  }.property('face.distance', 'isImperial'),
+  }),
 
-  unprotectedOpeningArea: function(key, value) {
+  unprotectedOpeningArea: Ember.computed('face.unprotectedOpeningArea', function(key, value) {
     if (arguments.length > 1) {
       this.set('face.unprotectedOpeningArea', parseFloat(value));
       this.get('face').setLimitingDistance();
@@ -48,9 +48,9 @@ export default Ember.Component.extend({
     else {
       return undefined;
     }
-  }.property('face.unprotectedOpeningArea'),
+  }),
 
-  constructionRating: function() {
+  constructionRating: Ember.computed('face.combustibleConstruction', function() {
     var combustibleConstruction = this.get('face.combustibleConstruction');
 
     if (typeof combustibleConstruction === 'undefined') {
@@ -62,9 +62,9 @@ export default Ember.Component.extend({
     else {
       return 'Non-combustible construction';
     }
-  }.property('face.combustibleConstruction'),
+  }),
 
-  claddingRating: function() {
+  claddingRating: Ember.computed('face.combustibleCladding', function() {
     var combustibleCladding = this.get('face.combustibleCladding');
 
     if (typeof combustibleCladding === 'undefined') {
@@ -76,9 +76,9 @@ export default Ember.Component.extend({
     else {
       return 'Non-combustible cladding';
     }
-  }.property('face.combustibleCladding'),
+  }),
 
-  fireResistanceRating: function() {
+  fireResistanceRating: Ember.computed('face.fireResistanceMinutes', function() {
     var minutes = this.get('face.fireResistanceMinutes');
 
     if (typeof minutes === 'undefined') {
@@ -90,21 +90,26 @@ export default Ember.Component.extend({
     else {
       return `${minutes/60}h fire-resistance rating`;
     }
-  }.property('face.fireResistanceMinutes'),
+  }),
 
-  ratings: function() {
-    var construction = this.get('constructionRating');
-    var cladding = this.get('claddingRating');
-    var fireResistance = this.get('fireResistanceRating');
+  ratings: Ember.computed(
+    'constructionRating',
+    'claddingRating',
+    'fireResistanceRating',
+    function() {
+      var construction = this.get('constructionRating');
+      var cladding = this.get('claddingRating');
+      var fireResistance = this.get('fireResistanceRating');
 
-    var ratings = [];
+      var ratings = [];
 
-    if (construction) { ratings.push(construction); }
-    if (cladding) { ratings.push(cladding); }
-    if (fireResistance) { ratings.push(fireResistance); }
+      if (construction) { ratings.push(construction); }
+      if (cladding) { ratings.push(cladding); }
+      if (fireResistance) { ratings.push(fireResistance); }
 
-    return ratings;
-  }.property('constructionRating', 'claddingRating', 'fireResistanceRating'),
+      return ratings;
+    }
+  ),
 
   convertToMetric: function(value) {
     if (this.get('isImperial')) {
@@ -129,7 +134,7 @@ export default Ember.Component.extend({
     }
   },
 
-  area: function() {
+  area: Ember.computed('face.width', 'face.height', 'isImperial', function() {
     var width = this.get('face.width');
     var height = this.get('face.height');
 
@@ -145,24 +150,24 @@ export default Ember.Component.extend({
     {
       return undefined;
     }
-  }.property('face.width', 'face.height', 'isImperial'),
+  }),
 
   project: Ember.computed.alias('face.project'),
 
   isImperial: Ember.computed.alias('project.isImperial'),
 
-  units: function() {
+  units: Ember.computed('project.isImperial', function() {
     if (this.get('project.isImperial')) {
       return 'ft';
     }
     else {
       return 'm';
     }
-  }.property('project.isImperial'),
+  }),
 
-  makeNumbersDraggable: function() {
+  makeNumbersDraggable: Ember.on('didInsertElement', function() {
     this.$('input[step]').draggableNumber();
-  }.on('didInsertElement'),
+  }),
 
   actions: {
     addFace() {
