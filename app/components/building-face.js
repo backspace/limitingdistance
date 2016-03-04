@@ -3,50 +3,58 @@ import Ember from 'ember';
 var FTM = 0.3048;
 
 export default Ember.Component.extend({
-  width: Ember.computed('face.width', 'isImperial', function(key, value) {
-    if (arguments.length > 1) {
+  width: Ember.computed('face.width', 'isImperial', {
+    get() {
+      return this.convertFromMetric(this.get('face.width'));
+    },
+
+    set(key, value) {
       this.set('face.width', this.convertToMetric(parseFloat(value)));
       this.get('face').setUnprotectedOpeningArea();
-    } else {
-      return this.convertFromMetric(this.get('face.width'));
     }
   }),
 
-  height: Ember.computed('face.height', 'isImperial', function(key, value) {
-    if (arguments.length > 1) {
+  height: Ember.computed('face.height', 'isImperial', {
+    get() {
+      return this.convertFromMetric(this.get('face.height'));
+    },
+
+    set(key, value) {
       this.set('face.height', this.convertToMetric(parseFloat(value)));
       this.get('face').setUnprotectedOpeningArea();
-    } else {
-      return this.convertFromMetric(this.get('face.height'));
     }
   }),
 
-  distance: Ember.computed('face.distance', 'isImperial', function(key, value) {
-    if (arguments.length > 1) {
+  distance: Ember.computed('face.distance', 'isImperial', {
+    get() {
+      return this.convertFromMetric(this.get('face.distance'));
+    },
+
+    set(key, value) {
       this.set('face.distance', this.convertToMetric(parseFloat(value)));
       this.get('face').setUnprotectedOpeningArea();
-    } else {
-      return this.convertFromMetric(this.get('face.distance'));
     }
   }),
 
-  unprotectedOpeningArea: Ember.computed('face.unprotectedOpeningArea', function(key, value) {
-    if (arguments.length > 1) {
+  unprotectedOpeningArea: Ember.computed('face.unprotectedOpeningArea', {
+    get() {
+      var area = this.get('face.unprotectedOpeningArea');
+
+      if (isNaN(area)) {
+        return '';
+      }
+      else if (Ember.isPresent(area)) {
+        if (arguments.length > 1) { return area; }
+        else { return area.toFixed(1); }
+      }
+      else {
+        return undefined;
+      }
+    },
+
+    set(key, value) {
       this.set('face.unprotectedOpeningArea', parseFloat(value));
       this.get('face').setLimitingDistance();
-    }
-
-    var area = this.get('face.unprotectedOpeningArea');
-
-    if (isNaN(area)) {
-      return '';
-    }
-    else if (Ember.isPresent(area)) {
-      if (arguments.length > 1) { return area; }
-      else { return area.toFixed(1); }
-    }
-    else {
-      return undefined;
     }
   }),
 
